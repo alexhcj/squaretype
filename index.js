@@ -1,12 +1,17 @@
 const express = require('express')
 const config = require('config')
 const mongoose = require('mongoose')
+const postsRoute = require('./routes/posts.routes')
+const cors = require('cors')
 
 const app = express()
 
+app.use(cors({  credentials: true }))
 app.use(express.json({ extended: true }))
+app.use('/static', express.static('public'))
 
 app.use('/api/auth', require('./routes/auth.routes'))
+app.use('/api/posts', postsRoute)
 
 const PORT = config.get('port') || 3000
 

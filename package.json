@@ -13,6 +13,7 @@
     "mongoose": "^5.11.4"
   },
   "devDependencies": {
+    "casual": "^1.6.2",
     "concurrently": "^5.3.0",
     "nodemon": "^2.0.6"
   },

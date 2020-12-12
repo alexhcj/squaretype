@@ -34,10 +34,12 @@ async function start() {
 
 start()
 
-// TODO: fake images generator, better will be illustrations!
-// TODO: search more illustrations to 50
+// TODO: different images sizes in different components
 // TODO: posts grid styling
 
+// TODO: resize illustrations to 380x220 & 80x80
+// TODO: add illustrations to public/images
+// TODO: add more posts to mongoodb
 
 // Boxed Hero - List Layout + Time Line ? another routes request
 // Share Buttons - Bottom
@@ -49,5 +51,7 @@ start()
 //          380x220
 //          3840x2544
 //          № 6 extra 1920x1080
+// DONE: 3. illustrations creator!
+// DONE: 4. search more illustrations to 50
 
 // IDEA: generator multiple image sizes. cut online, create field paths (80-80, 380, 320) and so on...

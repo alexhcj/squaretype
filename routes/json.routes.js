@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
 	try {
 		let posts = []
 
-		for (let i = 0; i < 10; i++) {
+		for (let i = 1; i <= 35; i++) {
 			const post = {}
 
             const title = () => {
@@ -50,7 +50,7 @@ router.get('/', async (req, res) => {
             }
 
             const img = () => {
-                const path = 'http://localhost:5000/static/images/'
+                const path = `http://localhost:5000/static/images/demo-${i}`
                 return path
             }
             
@@ -63,9 +63,9 @@ router.get('/', async (req, res) => {
 			post.text = text(8)
 			post.author = author
 			post.data = date()
+            post.img = img()
 			post.views = views
             post.shares = shares
-            post.img = img()
 			posts.push(post)
 		}
 

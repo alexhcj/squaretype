@@ -1,36 +1,57 @@
-const { Schema, model } = require('mongoose')
+import { Schema, model } from 'mongoose'
+import Category from './Category.js'
 
-const post = new Schema({
+const Post = new Schema(
+  {
     category: {
-        type: String,
-        required: true,
+      type: Schema.Types.ObjectId,
+      ref: Category.modelName
     },
-	title: {
-		type: String,
-		required: true,
-	},
-	text: {
-		type: String,
-		required: true,
+    title: {
+      type: String,
+      required: true
+    },
+    slug: {
+      type: String,
+      required: true
+    },
+    text: {
+      type: String,
+      required: true
+    },
+    previewText: {
+      type: String,
+      required: true
     },
     author: {
-        type: String,
-        required: true
+      type: String,
+      required: true
     },
     date: {
-        type: String,
-        required: true
+      type: String,
+      required: true
     },
     img: {
-        type: String,
-        required: true,
+      type: String,
+      required: true
     },
-	views: {
-        type: Number,
-	},
-	shares: {
-        type: Number,
-	},
-})
+    views: {
+      type: Number
+    },
+    shares: {
+      type: Number
+    }
+  },
+  {
+    versionKey: false,
+    toJSON: {
+      virtuals: true,
+      transform: function (doc, ret) {
+        delete ret._id
+        delete ret.id
+      }
+    }
+  }
+)
 
-module.exports = model('Post', post)
+export default model('post', Post)

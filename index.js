@@ -1,57 +1,52 @@
-const express = require('express')
-const config = require('config')
-const mongoose = require('mongoose')
-const postsRoute = require('./routes/posts.routes')
-const cors = require('cors')
-const jsonRoute = require('./routes/json.routes')
+import express from 'express'
+import mongoose from 'mongoose'
+import cors from 'cors'
+import config from './config/index.js'
+import routes from './routes/index.js'
+// import authRoute from './routes/auth.routes'
 
-const PORT = config.get('port') || 3000
+// config envs
+const port = config.port
+const node_env = config.node_env
+const apiUrl = config.api.url
+const apiPrefix = config.api.prefix
+const apiVersion = config.api.version
+const connectionString = config.mongodb.database.connectionString
+const databaseName = config.mongodb.database.databaseName
+
+// setup
 const app = express()
 
-app.use(cors({  credentials: true }))
-app.use(express.json({ extended: true }))
-app.use('/static', express.static('public'))
+// middlewares
+app.use(cors({ credentials: true }))
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
-app.use('/api/auth', require('./routes/auth.routes'))
-app.use('/api/posts', postsRoute)
-app.use('/api/json', jsonRoute)
+// routes
+app.use(`/${apiPrefix}/${apiVersion}`, routes)
+app.use('/static', express.static('public'))
+// app.use('/api/auth', authRoute)
 
 async function start() {
-	try {
-		await mongoose.connect(config.get('mongoUri'), {
-			useNewUrlParser: true,
-			useUnifiedTopology: true,
-			useCreateIndex: true,
-		})
-		app.listen(PORT, () => {
-			console.log(`Server is running on port ${PORT}`)
-		})
-	} catch (e) {
-		console.log('Server error', e.message)
-		process.exit(1)
-	}
+  try {
+    await mongoose.connect(connectionString, {
+      dbName: databaseName
+    })
+    app.listen(port || 9090, () => {
+      console.log(
+        `Port: ${port}`,
+        '\n',
+        `API version: ${apiVersion}`,
+        '\n',
+        `Env: ${node_env}`,
+        '\n',
+        `Base url: ${apiUrl}${port}/${apiPrefix}/${apiVersion}`
+      )
+    })
+  } catch (e) {
+    console.log('Server error', e.message)
+    process.exit(1)
+  }
 }
 
 start()
-
-// TODO: different images sizes in different components
-// TODO: posts grid styling
-
-// TODO: resize illustrations to 380x220 & 80x80
-// TODO: add illustrations to public/images
-// TODO: add more posts to mongoodb
-
-// Boxed Hero - List Layout + Time Line ? another routes request
-// Share Buttons - Bottom
-// Related Posts - Grid
-
-// DONE: 1. Fake json generator
-// DONE: 2. static images different sizes
-//          80x80
-//          380x220
-//          3840x2544
-//          № 6 extra 1920x1080
-// DONE: 3. illustrations creator!
-// DONE: 4. search more illustrations to 50
-
-// IDEA: generator multiple image sizes. cut online, create field paths (80-80, 380, 320) and so on...

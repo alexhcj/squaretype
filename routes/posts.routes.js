@@ -1,15 +1,10 @@
-const {Router} = require('express')
+import Router from 'express'
+import PostsController from '../controllers/posts.controller.js'
+
 const router = Router()
-const Post = require('../models/Post')
 
-router.get('/', async (req, res) => {
-    try {
-        const posts = await Post.find()
+router.get('/', PostsController.getPosts)
+router.get('/categories', PostsController.getPostsCategories)
+router.get('/:slug', PostsController.getPostBySlug)
 
-        res.send(posts)
-    } catch (e) {
-        res.status(500).json({message: 'Something went wrong, try again please'})
-    }
-})
-
-module.exports = router
+export default router

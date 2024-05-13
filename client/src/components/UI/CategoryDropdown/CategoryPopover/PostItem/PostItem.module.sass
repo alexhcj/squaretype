@@ -1,0 +1,49 @@
+@import '../../../../../sass/variables'
+
+.img_link
+  display: block
+  margin-bottom: 16px
+
+.title_link
+  display: inline-block
+  text-decoration: none
+  margin-bottom: 4px
+
+  .title
+    transition: $transition-default
+    letter-spacing: -$letter-spacing-default
+    font-weight: $weight-700
+    font-family: $font-space-grotesk
+
+    &.light
+      color: $black-color
+
+    &.dark
+      color: $white-color
+
+  &:hover
+    .title
+      &.light
+        color: $sea-color
+
+  &:hover
+    .title
+      &.dark
+        color: $white-color-5
+
+.views
+  font-size: 0.875rem
+  font-weight: $weight-500
+  font-family: $font-space-grotesk
+  color: $asphalt-color-3
+
+.icon
+  display: inline-flex
+  align-items: center
+  margin-right: 4px
+  width: 14px
+  height: 14px
+  font-weight: $weight-500
+
+  path
+    fill: $asphalt-color-3

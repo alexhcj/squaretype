@@ -1,0 +1,42 @@
+@import '../../../sass/variables'
+
+.item
+  display: grid
+  grid-template: "img title type" auto "img date type" auto / 50px 1fr
+  align-items: center
+  gap: 4px 16px
+  padding: 16px
+  text-decoration: none
+  transition: $transition-default
+
+  &:not(:last-child)
+    border-bottom: 1px solid $asphalt-color-2
+
+  .img
+    grid-area: img
+    width: 100%
+
+  .title
+    grid-area: title
+    letter-spacing: -$letter-spacing-default
+    line-height: 1.25rem
+    font-family: $font-space-grotesk
+    font-weight: $weight-700
+    color: $black-color
+
+  .date
+    grid-area: date
+    font-size: 0.875rem
+    font-family: $font-space-grotesk
+    font-weight: $weight-600
+    color: $black-color
+
+  .type
+    grid-area: type
+    font-size: 0.875rem
+    font-family: $font-space-grotesk
+    font-weight: $weight-600
+    color: $asphalt-color-3
+
+  &:hover
+    background-color: $asphalt-color-2

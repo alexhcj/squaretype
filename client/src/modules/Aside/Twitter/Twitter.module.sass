@@ -1,0 +1,108 @@
+@import '../../../sass/variables'
+
+.twitter
+	display: flex
+	flex-direction: column
+	padding: 32px
+
+	.account
+		display: flex
+		flex-wrap: wrap
+		margin-bottom: 10px
+		gap: 0 15px
+
+		.imgBox
+			width: 50px
+			height: 50px
+
+			.img, .img_mock
+				width: 100%
+				height: 100%
+				border-radius: 50%
+
+			.img_mock
+				background-color: $black-color
+
+		.userBlock
+			display: flex
+			flex-direction: column
+
+			.user
+				text-decoration: none
+				font-weight: $weight-700
+				letter-spacing: -$letter-spacing-default
+				transition: $transition-default
+
+		.userNickName
+			line-height: 1.5
+			font-size: 14px
+			text-decoration: none
+			color: $asphalt-color-8
+			transition: $transition-default
+
+		.followBox
+			display: flex
+			flex: 0 0 100%
+			margin-top: 20px
+
+			.follow
+				font-size: 14px
+				font-weight: $weight-600
+
+				&:first-child
+					margin-right: 10px
+
+				.number
+					margin-right: 3px
+					font-size: 12px
+					font-weight: $weight-600
+					letter-spacing: $letter-spacing-big
+
+	&.light
+		background-color: $asphalt-color-7
+
+		.user
+			color: $black-color
+
+			&:hover
+				color: $asphalt-color-3
+
+		.userNickName
+			color: $asphalt-color-8
+
+			&:hover
+				color: $black-color
+
+		.follow
+			color: $asphalt-color-3
+
+			.number
+				color: $black-color
+
+	&.dark
+		background-color: $coal-color-2
+
+		.user
+			color: $white-color
+
+			&:hover
+				color: $asphalt-color-11
+
+		.userNickName
+			color: $asphalt-color-13
+
+			&:hover
+				color: $white-color
+
+		.follow
+			color: $asphalt-color-11
+
+			.number
+				color: $white-color
+
+
+	.tweets
+		margin-bottom: 24px
+
+.btn
+	justify-content: center

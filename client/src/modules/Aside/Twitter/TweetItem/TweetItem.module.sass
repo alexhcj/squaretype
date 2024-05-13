@@ -1,0 +1,92 @@
+@import '../../../../sass/variables'
+
+.tweet
+	display: flex
+	flex-direction: column
+	margin-top: 16px
+	padding-top: 16px
+
+	.text
+		margin-bottom: 8px
+		font-size: 14px
+		line-height: 1.5
+
+	.meta
+		display: flex
+		justify-content: space-between
+
+		.twitterLink
+			display: flex
+			align-items: baseline
+			text-decoration: none
+			font-size: 14px
+			font-weight: $weight-600
+			transition: $transition-default
+
+			.twitterIcon
+				margin-right: 5px
+				width: 14px
+				transition: $transition-default
+
+		.actions
+			display: flex
+			align-items: center
+			gap: 5px
+
+			.actionLink
+				width: 13px
+				transition: $transition-default
+
+				.replyIcon
+					width: 11px
+
+				.likeIcon
+					width: 10px
+
+	&.light
+		border-top: 1px solid $white-color-3
+
+		.text
+			color: $asphalt-color-8
+
+		.twitterLink
+			color: $asphalt-color-3
+
+			.twitterIcon
+				fill: $asphalt-color-3
+
+			&:hover
+				color: $cherry-color
+
+				.twitterIcon
+					fill: $cherry-color
+
+		.actionLink
+			fill: $cherry-color
+
+			&:hover
+				fill: $black-color
+
+	&.dark
+		border-top: 1px solid $asphalt-color-10
+
+		.text
+			color: $asphalt-color-13
+
+		.twitterLink
+			color: $asphalt-color-11
+
+			.twitterIcon
+				fill: $asphalt-color-11
+
+			&:hover
+				color: $white-color
+
+				.twitterIcon
+					fill: $white-color
+
+		.actionLink
+			fill: $asphalt-color-11
+
+			&:hover
+				fill: $white-color

@@ -1,0 +1,99 @@
+@import '../../sass/variables'
+@import '../../sass/grid'
+
+.box
+  position: relative
+  background-color: $sea-color-3
+
+  .block
+    transition: $transition-long
+    display: flex
+    align-items: center
+    height: 0
+    visibility: hidden
+    overflow: hidden
+
+    &.light
+      background-color: $sea-color-3
+
+    &.dark
+      background-color: $coal-color-2
+
+    &.open
+      height: 200px
+      visibility: visible
+
+    .search
+      width: 100%
+
+      .form
+        position: relative
+        height: 60px
+
+        .input
+          height: 100%
+
+          & > input
+            padding: 0 70px
+            outline: none
+
+        .btn_close, .btn_search
+          position: absolute
+          top: 50%
+          width: 70px
+          height: 100%
+          background-color: transparent
+          cursor: pointer
+
+          .icon
+            width: 20px
+            height: 20px
+            transition: $transition-default
+
+        .btn_search
+          left: 0
+          translate: 0 -50%
+
+          .icon
+            fill: $sea-color
+
+          &:hover .icon
+            fill: $black-color
+
+        .btn_reset
+          position: absolute
+          top: 50%
+          width: 20px
+          height: 100%
+          right: 70px
+          transform: translateY(-50%)
+          background-color: transparent
+          cursor: pointer
+
+        .btn_close
+          right: 0
+          translate: 0 -50%
+
+          &:hover .icon
+            fill: $asphalt-color-3
+
+.result
+  position: absolute
+  top: calc(50% + 35px)
+  left: 50%
+  display: none
+  height: 0
+  visibility: hidden
+  max-width: 1200px
+  max-height: 332px
+  width: 100%
+  border-radius: $border-radius-default
+  background-color: $white-color
+  box-shadow: 0 10px 40px $coal-color
+  z-index: $z-index-100
+  translate: -50% 0
+
+  &.open
+    display: grid
+    height: auto
+    visibility: visible

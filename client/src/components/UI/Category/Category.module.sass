@@ -1,0 +1,78 @@
+@import '../../../sass/_variables'
+
+.link
+  display: inline-flex
+  align-items: center
+  text-decoration: none
+
+  &::before
+    content: '—'
+    order: 2
+    padding: 0 .5rem
+    color: $white-color-1
+
+  &:hover .category
+    color: $white-color
+
+    &::after
+      transform: translateY(1px)
+      opacity: 1
+
+  &.grey
+    .category
+      color: $asphalt-color-3
+
+    &::before
+      color: $asphalt-color-3
+
+    &:hover .category
+      color: $black-color
+
+      &::after
+        background-color: $black-color
+
+  .char
+    text-transform: capitalize
+    display: flex
+    justify-content: center
+    font-weight: $weight-600
+    color: $white-color
+    font-family: $font-space-grotesk
+
+    &.large
+      width: 64px
+      height: 64px
+      line-height: 64px
+      font-size: 48px
+
+    &.small
+      width: 24px
+      height: 24px
+      line-height: 24px
+      font-size: 12px
+
+    &.dark
+      background-color: $asphalt-color-12
+
+  .category
+    position: relative
+    order: 3
+    text-transform: uppercase
+    font-size: 12px
+    letter-spacing: 0.04em
+    color: $white-color-1
+    font-family: $font-space-grotesk
+    border-bottom: 1px solid transparent
+    transition: $transition-default
+
+    &::after
+      position: absolute
+      content: ''
+      top: 100%
+      left: 0
+      width: 100%
+      height: 1px
+      opacity: 0
+      transform: translateY(4px)
+      background-color: $white-color
+      transition: $transition-cubic

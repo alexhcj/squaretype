@@ -1,0 +1,41 @@
+@import '../../../sass/variables'
+
+.box
+  margin-bottom: 22px
+
+  .follow
+    display: inline-block
+    text-transform: uppercase
+    font-size: 13px
+    font-weight: $weight-700
+    letter-spacing: $letter-spacing-default
+    font-family: $font-space-grotesk
+
+    &::after
+      content: ''
+      display: block
+      height: 1px
+      width: 100%
+      transform: translateY(4px)
+
+    &::after
+      background-color: $black-color
+
+    &.theme
+      &_light
+        color: $white-color
+
+        &::after
+          background-color: $white-color
+
+      &_dark
+        color: $black-color
+
+        &::after
+          background-color: $black-color
+
+      &_grey
+        color: $asphalt-color-11
+
+        &::after
+          background-color: $asphalt-color-11

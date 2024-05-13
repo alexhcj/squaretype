@@ -1,0 +1,27 @@
+@import '../../../sass/variables'
+
+.breadcrumbs
+  margin-bottom: 32px
+  display: flex
+  align-items: center
+  gap: 8px
+
+  .crumb
+    text-decoration: none
+    font-size: 14px
+    color: $white-color-1
+    transition: $transition-default
+    &:not(.last):hover
+      color: $white-color
+
+    &.last
+      font-weight: $weight-600
+
+  .chevron
+    margin-top: -2px
+    width: 11px
+    height: 11px
+    transform: rotate(90deg)
+    path
+      fill: $white-color-1
+

@@ -1,0 +1,133 @@
+@import '../../../../sass/variables'
+
+.link
+  width: 100%
+  text-decoration: none
+  transition: $transition-default
+
+  .icon
+    display: block
+    width: 20px
+    height: 20px
+    transition: $transition-default
+
+  .subs
+    font-size: 12px
+    transition: $transition-default
+    font-family: $font-space-grotesk
+
+  .type
+    display: grid
+    align-items: center
+    font-size: 10px
+    transition: $transition-default
+
+  &:hover
+    &.facebook
+      background-color: $facebook-color
+
+    &.twitter
+      background-color: $twitter-color
+
+    &.instagram
+      background-color: $instagram-color
+
+    &.youtube
+      background-color: $youtube-color
+
+    &.telegram
+      background-color: $telegram-color
+
+    &.github
+      background-color: $github-color
+
+    &.pinterest
+      background-color: $pinterest-color
+
+    &.soundcloud
+      background-color: $soundcloud-color
+
+    &.behance
+      background-color: $behance-color
+
+    &.vk
+      background-color: $vk-color
+
+  &.grid
+    &_square
+      display: flex
+      flex-direction: column
+      align-items: center
+      gap: 8px
+      padding: 16px 8px
+
+    &_row
+      display: grid
+      grid-auto-flow: column
+      justify-content: start
+      grid-template-columns: 18px auto 1fr
+      gap: 16px
+      padding: 13px 18px 13px 16px
+
+      .icon
+        width: 18px
+        height: 18px
+
+      .type
+        letter-spacing: -$letter-spacing-default
+        font-size: 0.75rem
+        color: $black-color
+        font-weight: $weight-700
+
+      .subs
+        justify-self: end
+        font-size: 0.875rem
+        color: $black-color
+        font-weight: $weight-600
+
+      &:hover
+        .icon
+          svg
+            fill: $white-color
+
+        .type
+          color: $white-color
+
+        .subs
+          color: $asphalt-color-6
+
+  &.theme
+    &_light
+      background-color: $asphalt-color-7
+
+      .subs
+        color: $black-color-2
+
+      .type
+        color: $black-color-2
+
+      &:hover
+        .icon
+          fill: $white-color
+
+        .type
+          color: $white-color
+
+        .subs
+          color: $asphalt-color-6
+
+    &_dark
+      background-color: $coal-color-2
+
+      .subs
+        color: $white-color
+
+      .type
+        color: $white-color
+
+      &:hover
+        .icon
+          fill: $white-color
+
+        .subs
+          color: $asphalt-color-6

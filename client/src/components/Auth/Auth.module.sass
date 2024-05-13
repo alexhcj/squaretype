@@ -1,0 +1,42 @@
+.form
+    display: flex
+    flex-direction: column
+    padding: 50px
+    max-width: 300px
+    background-color: #fff
+
+    .inputGroup
+        display: flex
+        flex-direction: column
+        margin-bottom: 20px
+
+        label
+            margin-bottom: 5px
+            font-weight: 600
+            color: #2c2c2c
+            font-family: sans-serif
+
+        input
+            padding: 10px 20px
+            border: none
+            border-radius: 4px
+
+    .buttonsGroup
+        display: flex
+
+        button
+            padding: 14px 10px
+            width: 50%
+            border: none
+            text-transform: uppercase
+            font-weight: bold
+            cursor: pointer
+            transition: all 0.3s ease-in-out
+
+    // hover can use on button
+        button:hover 
+            background-color: #1b1b1b
+            color: #fff
+            
+        button:first-child
+            margin-right: 20px

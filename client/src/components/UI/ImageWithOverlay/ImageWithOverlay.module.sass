@@ -1,0 +1,53 @@
+@import '../../../sass/variables'
+
+.block
+  position: relative
+  display: flex
+
+  .img
+    width: 100%
+    height: 100%
+    object-fit: cover
+    cursor: pointer
+
+  .overlay
+    position: absolute
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    padding: 20px
+    background-color: transparent
+    z-index: $z-index--1
+    cursor: pointer
+    transition: $transition-img
+
+    .read
+      text-transform: uppercase
+      letter-spacing: $letter-spacing-big
+      font-size: 0.75rem
+      font-weight: $weight-600
+      font-family: $font-space-grotesk
+      color: $white-color
+
+    .min
+      position: absolute
+      bottom: 20px
+      left: 50%
+      transform: translateX(-50%)
+      font-size: 14px
+      color: $asphalt-color-6
+
+      .clock
+        margin-right: 3px
+        margin-bottom: -3px
+        width: 14px
+        height: 14px
+
+  &:hover .overlay
+    background-color: $coal-color-1
+    z-index: $z-index-10

@@ -1,0 +1,42 @@
+@import '../../../../sass/variables'
+
+.popover
+  position: absolute
+  top: 60px
+  left: 0
+  width: 100%
+  opacity: 0
+  visibility: hidden
+  box-shadow: 0 10px 40px $coal-color
+  z-index: $z-index-100
+  cursor: default
+  transition: $transition-default
+
+  &.open
+    visibility: visible
+    opacity: 1
+
+  &.light
+    background-color: $white-color
+
+  &.dark
+    background-color: $black-color
+
+  .tabs
+    display: grid
+    grid-auto-flow: column
+    grid-auto-columns: 20% 1fr
+
+    .categories
+      display: grid
+      align-content: start
+      padding: 24px
+
+    .posts
+      display: grid
+      grid-auto-flow: column
+      grid-template-columns: repeat(4, 1fr)
+      align-items: start
+      gap: 32px
+      padding: 32px
+      border-left: 1px solid $asphalt-color-2

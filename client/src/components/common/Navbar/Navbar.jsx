@@ -29,7 +29,7 @@ const icons = [
     {contact: 'telegram', icon: <TelegramSVG/>}
 ]
 
-export const Navbar = () => {
+export const Navbar = ({border}) => {
     const {isOpen, setIsOpen} = useSidebarModalContext()
     const {theme, setTheme} = useThemeContext()
     const [contacts, setContacts] = useLocalStorage('contacts', [])
@@ -52,7 +52,7 @@ export const Navbar = () => {
     }
 
     return (
-        <nav className={s.nav}>
+        <nav className={cn(s.nav, theme === 'light' ? s.light : s.dark)}>
             <div className={s.container}>
                 <div className={s.top}>
                     <div className={s.contacts}>
@@ -80,36 +80,44 @@ export const Navbar = () => {
                     </Button>
                 </div>
             </div>
-            <div className={s.bottom}>
+            <div className={cn(s.bottom, border && s.border)}>
                 <div>
                     <div className={s.container}>
                         <div className={s.box}>
-                            <Burger
-                                onClick={() => setIsOpen(!isOpen)}
-                                className={cn(s.burgerBtn, theme === 'light' ? s.light : s.dark)}
-                            />
+                            <div className={s.left}>
+                                <Burger
+                                    onClick={() => setIsOpen(!isOpen)}
+                                    className={s.burgerBtn}
+                                />
+                                <div className={cn(s.logo, s.small)}>
+                                    <Link to="/"
+                                          className={s.link}>
+                                        Squaretype
+                                    </Link>
+                                </div>
+                            </div>
                             <div className={s.links}>
                                 <CategoryDropdown
-                                    className={cn(s.link, theme === 'light' ? s.light : s.dark)}
+                                    className={s.link}
                                     icon={<ChevronSVG
-                                        className={cn(s.chevron_icon, theme === 'light' ? s.light : s.dark)}/>}
+                                        className={s.chevron_icon}/>}
                                 >
                                     Categories
                                 </CategoryDropdown>
                             </div>
                             <div className={s.meta}>
                                 <button className={s.btn_meta} type="button">
-                                    <ProfileSVG className={cn(s.icon, theme === 'light' ? s.light : s.dark)}/>
+                                    <ProfileSVG className={s.icon}/>
                                 </button>
                                 <span className={s.divider}></span>
                                 <button className={s.btn_meta} type="button" onClick={toggleSearch}>
-                                    <MagnifierSVG className={cn(s.icon, theme === 'light' ? s.light : s.dark)}/>
+                                    <MagnifierSVG className={s.icon}/>
                                 </button>
                                 <button className={s.btn_meta} type="button" onClick={handleTheme}>
                                     {theme === 'light' ? (
-                                        <MoonSVG className={cn(s.icon, theme === 'light' ? s.light : s.dark)}/>
+                                        <MoonSVG className={s.icon}/>
                                     ) : (
-                                        <SunSVG className={cn(s.icon, theme === 'light' ? s.light : s.dark)}/>
+                                        <SunSVG className={s.icon}/>
                                     )}
                                 </button>
                             </div>

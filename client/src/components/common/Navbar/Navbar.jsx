@@ -5,6 +5,7 @@ import {contactsAPI} from '../../../api/contacts'
 import {useSidebarModalContext} from '../../../context/SidebarModalContext'
 import {useThemeContext} from '../../../context/ThemeContext'
 import {useLocalStorage} from '../../../hooks/useLocalStorage.hook'
+import {useScrollDirection} from "../../../hooks/useScrollDirection.hook";
 import {Search} from '../../Search/Search'
 import {Button} from '../../UI/Button/Button'
 import {CategoryDropdown} from '../../UI/CategoryDropdown/CategoryDropdown'
@@ -34,6 +35,20 @@ export const Navbar = ({border}) => {
     const {theme, setTheme} = useThemeContext()
     const [contacts, setContacts] = useLocalStorage('contacts', [])
     const [isSearchOpen, setIsSearchOpen] = useState(false)
+    const [sticky, setSticky] = useState(false)
+    const direction = useScrollDirection()
+
+    const stickyMenu = () => {
+        document.scrollingElement.scrollTop >= 100 ? setSticky(true) : setSticky(false)
+    }
+
+    const showMenu = () => {
+        return direction === 'up' && document.scrollingElement.scrollTop >= 100
+    }
+
+    const stickyHide = () => {
+        return direction === 'down' && document.scrollingElement.scrollTop >= 100
+    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -42,6 +57,12 @@ export const Navbar = ({border}) => {
         }
         fetchData()
     }, [])
+
+    useEffect(() => {
+        window.addEventListener('scroll', stickyMenu)
+        return () => window.removeEventListener('scroll', stickyMenu)
+    }, []);
+
 
     const toggleSearch = () => {
         setIsSearchOpen(!isSearchOpen)
@@ -52,7 +73,7 @@ export const Navbar = ({border}) => {
     }
 
     return (
-        <nav className={cn(s.nav, theme === 'light' ? s.light : s.dark)}>
+        <nav className={cn(s.nav, {[s.bottom_sticky]: sticky}, theme === 'light' ? s.light : s.dark)}>
             <div className={s.container}>
                 <div className={s.top}>
                     <div className={s.contacts}>
@@ -60,18 +81,18 @@ export const Navbar = ({border}) => {
                             if (icons.find((item) => item.contact === contact)) {
                                 return (
                                     <Link to="/" key={contact} className={cn(s.socialLink, s[contact])}>
-                                        <div className={cn(s.icon, theme === 'light' ? s.light : s.dark)}>
+                                        <div className={s.icon}>
                                             {icons.find((item) => item.contact === contact).icon}
                                         </div>
                                         <div
-                                            className={cn(s.subs, theme === 'light' ? s.light : s.dark)}>{divideNumber(subsTotal)}</div>
+                                            className={s.subs}>{divideNumber(subsTotal)}</div>
                                     </Link>
                                 )
                             }
                         })}
                     </div>
                     <div className={s.logo}>
-                        <Link to="/" className={cn(s.link, theme === 'light' ? s.light : s.dark)}>
+                        <Link to="/" className={s.link}>
                             Squaretype
                         </Link>
                     </div>
@@ -80,7 +101,12 @@ export const Navbar = ({border}) => {
                     </Button>
                 </div>
             </div>
-            <div className={cn(s.bottom, border && s.border)}>
+            <div
+                className={cn(s.bottom, border && s.border, {
+                    [s.sticky]: sticky,
+                    [s.sticky_show]: showMenu(),
+                    [s.sticky_hide]: stickyHide()
+                })}>
                 <div>
                     <div className={s.container}>
                         <div className={s.box}>
@@ -89,7 +115,7 @@ export const Navbar = ({border}) => {
                                     onClick={() => setIsOpen(!isOpen)}
                                     className={s.burgerBtn}
                                 />
-                                <div className={cn(s.logo, s.small)}>
+                                <div className={cn(s.logo, s.small, {[s.visible]: sticky})}>
                                     <Link to="/"
                                           className={s.link}>
                                         Squaretype

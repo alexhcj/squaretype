@@ -13,7 +13,7 @@ export const HomeLayout = (Hero, Main, Aside) => {
     return (
       <>
         <div className={cn(s.page, { [s.transformed]: isOpen }, theme === 'light' ? s.light : s.dark)}>
-          <Navbar />
+          <Navbar border />
           <header className={s.header}>
             <Hero />
           </header>

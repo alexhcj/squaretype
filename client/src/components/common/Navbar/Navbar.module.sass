@@ -6,6 +6,9 @@
 	flex-direction: column
 	padding-top: 20px
 
+	&.bottom_sticky
+		padding-bottom: 60px
+
 	.top
 		display: grid
 		grid-auto-flow: column
@@ -57,35 +60,46 @@
 		height: 12px
 
 	.bottom
-		position: sticky
-		top: 60px
-		left: 0
-		right: 0
 		z-index: $z-index-100
 
+		&.border
+			border-bottom: 1px solid transparent
+
+		&.sticky
+			position: fixed
+			top: 0
+			width: 100%
+			transform: translateY(0)
+
+		&.sticky_hide
+			transform: translateY(calc(-100% - 1rem))
+			transition: $transition-long
+
+		&.sticky_show
+			transform: translateY(0)
+			transition: $transition-long
+
 		.box
+			position: relative
 			display: grid
 			grid-auto-flow: column
-			grid-template-columns: 150px 1fr 150px
+			grid-template-columns: 200px 1fr 200px
 			justify-content: space-between
 			align-items: center
 			height: 60px
 
-			.burgerBtn
-				width: 26px
-				height: 18px
-				cursor: pointer
-				transition: $transition-default
+			.left
+				display: grid
+				grid-auto-flow: column
+				align-items: center
+				justify-content: start
+				gap: 16px
 
-				&.light
-					&:hover
-						fill: $asphalt-color-9
-
-				&.dark
-					fill: $white-color
-
-					&:hover
-						fill: $asphalt-color-11
+				.burgerBtn
+					width: 26px
+					height: 18px
+					cursor: pointer
+					transition: $transition-default
 
 			.links
 				margin: auto
@@ -218,3 +232,32 @@
 
 				.divider
 					background-color: $asphalt-color-2
+
+		.logo .link
+			color: $black-color
+
+		&.icon
+			fill: $black-color
+
+		.subs
+			color: $asphalt-color-3
+
+		.burgerBtn
+			fill: $black-color
+
+			&:hover
+				fill: $asphalt-color-9
+
+		.links
+			.link
+				color: $black-color
+
+				&::after
+					background-color: $black-color
+
+			.chevron_icon
+				fill: $black-color
+
+		.meta
+			.icon
+				fill: $black-color

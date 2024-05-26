@@ -1,17 +1,12 @@
 import React from 'react'
 import { ReactComponent as PreloaderPulse } from '../../assets/preloader-pulse.svg'
-import classNames from 'classnames/bind'
+import cn from 'classnames'
 import s from './Preloader.module.sass'
 
-export const Preloader = ({ size }) => {
-  let cx = classNames.bind(s)
-  let imgCN = cx(s.img, size)
-
+export const Preloader = ({ className }) => {
   return (
-    <div className={s.preloader}>
-      <PreloaderPulse alt="Loading..." className={imgCN} />
+    <div className={cn(s.preloader, className)}>
+      <PreloaderPulse alt="Loading..." className={s.img} />
     </div>
   )
 }
-
-// LATER: animation playes not in all cases

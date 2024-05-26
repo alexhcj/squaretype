@@ -3,7 +3,6 @@ import Post from '../models/Post.js'
 export default {
   getPosts: async (query) => {
     const { limit = 10, offset = 0, sort = 'date', order = -1, category, search } = query
-
     const find = {}
 
     if (search) find.title = { $regex: `${search}`, $options: 'i' }
@@ -14,7 +13,6 @@ export default {
       .limit(+limit)
       .populate('category')
       .exec()
-
     category && posts.filter((post) => post.category.category === category)
 
     return {
@@ -22,7 +20,7 @@ export default {
       total: posts.length
     }
   },
-  getPostBySlug: (slug) => {
+  getPostBySlug: async (slug) => {
     return Post.findOne({ slug }).populate('category')
   },
   getPostsCategories: async () => {
@@ -42,5 +40,21 @@ export default {
     }
 
     return posts
+  },
+  getPostsByCategory: async (query) => {
+    const { limit = 10, offset = 0, category, sort = 'date', order = -1 } = query
+
+    const posts = await Post.find()
+      .sort({ [`${sort}`]: +order })
+      .populate('category')
+      .exec()
+
+    const postsByCategory = category && posts.filter((post) => post.category.category === category)
+    const postsWithOffsetAndLimit = postsByCategory.filter((post, index) => index >= +offset && index < limit)
+
+    return {
+      posts: postsWithOffsetAndLimit,
+      total: postsByCategory.length
+    }
   }
 }

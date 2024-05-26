@@ -37,5 +37,15 @@ export default {
     } catch (e) {
       console.error(e)
     }
+  },
+  getPostsByCategory: async (req, res) => {
+    let query = req.query
+
+    try {
+      let result = await PostsService.getPostsByCategory(query)
+      res.status(200).send(result)
+    } catch (e) {
+      console.error(e)
+    }
   }
 }

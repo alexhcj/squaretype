@@ -48,7 +48,11 @@ export default {
     const { limit = 10, offset = 0, category, sort = 'date', order = -1 } = query
 
     if (!category) {
-      return Post.find().sort({ [`${sort}`]: +order }).limit(limit).populate('category').exec()
+      const posts = await Post.find().sort({ [`${sort}`]: +order }).limit(limit).populate('category').exec()
+
+      return {
+        posts
+      }
     }
 
     const posts = await Post.find()

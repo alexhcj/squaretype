@@ -13,11 +13,14 @@ export default {
       .limit(+limit)
       .populate('category')
       .exec()
+    const totalEntities = await Post.find().count()
+
     category && posts.filter((post) => post.category.category === category)
 
     return {
       posts: posts,
-      total: posts.length
+      total: totalEntities,
+      queryTotal: posts.length
     }
   },
   getPostBySlug: async (slug) => {

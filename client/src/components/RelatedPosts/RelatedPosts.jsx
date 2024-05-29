@@ -46,7 +46,7 @@ export const RelatedPosts = ({ category, grid = 'column', className }) => {
         <div className={cn(s.list, s[`grid_${grid}`])}>
           {isError && 'Something went wrong'}
           {isLoading && <Preloader />}
-          {posts && posts.map((post) => <PostItem post={post} />)}
+          {posts && posts.map((post) => <PostItem post={post} key={post.slug} />)}
         </div>
       </div>
     </div>

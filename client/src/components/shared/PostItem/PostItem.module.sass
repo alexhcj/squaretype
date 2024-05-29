@@ -1,54 +1,51 @@
 @import '../../../sass/variables'
 
 .article
-    display: flex
-    margin-bottom: 64px
-    padding-right: 50px
-    width: 50%
+	display: grid
 
-    .content
-        max-width: 400px
-        width: 100%
+	.category
+		margin-bottom: 24px
 
-        .categoryBox
-            margin-bottom: 24px
+	.img
+		margin-bottom: 24px
 
-        .img
-            display: block
-            margin-bottom: 24px
+	.titleBox
+		margin-bottom: 20px
 
-        .titleBox
-            margin-bottom: 20px
+		.title
+			text-decoration: none
+			line-height: 1.25
+			letter-spacing: -$letter-spacing-default
+			font-size: 30px
+			font-weight: $weight-700
+			transition: $transition-default
 
-            .title
-                text-decoration: none
-                line-height: 1.25
-                letter-spacing: -$letter-spacing-default
-                font-size: 30px
-                font-weight: $weight-700
-                color: $black-color
-                transition: $transition-default
+	.metaBox
+		margin-bottom: 16px
 
-                &:hover
-                    color: $sea-color
+	.previewText
+		line-height: 1.5
+		color: $asphalt-color-8
+		display: -webkit-box
+		-webkit-line-clamp: 3
+		-webkit-box-orient: vertical
+		overflow: hidden
 
-        .metaBox
-            margin-bottom: 16px
+	&.light
+		background-color: $white-color
 
-        .previewText
-            line-height: 1.5
-            color: $asphalt-color-8
-            display: -webkit-box
-            -webkit-line-clamp: 3
-            -webkit-box-orient: vertical
-            overflow: hidden
+	// theme
+	&.theme
+		&_dark
+			.title
+				color: $white-color
 
-        &.light
-            background-color: $white-color
+				&:hover
+					color: $white-color-5
 
-        &.dark
-            .title
-                color: $white-color
+		&_light
+			.title
+				color: $black-color
 
-                &:hover
-                    color: $white-color-5
+				&:hover
+					color: $sea-color

@@ -1,25 +1,22 @@
-.postsBox
-    display: flex
-    flex-direction: column
+@import '../../sass/variables'
 
-    .posts
-        display: flex
-        flex-wrap: wrap
+.preloader
+	height: 400px
 
-        .preloader
-            display: flex
-            justify-content: center
-            align-items: center
-            margin-bottom: 300px
-            width: 100%
-            height: 400px
+.posts
+	display: grid
+	gap: 40px
+	grid-template-columns: repeat(2, 1fr)
+	flex-wrap: wrap
 
-    .btnBox
-        display: flex
-        justify-content: center
+.btn
+	display: flex
+	justify-content: center
+	margin-top: 64px
 
-        .chevron_icon
-            margin-bottom: -1px
-            width: 10px
-            height: 10px
-            transform: rotate(180deg)
+	.svg
+		margin-bottom: -1px
+		width: 10px
+		height: 10px
+		transform: rotate(180deg)
+		fill: $white-color

@@ -9,5 +9,8 @@ export const postsAPI = {
   },
   getPostsCategories() {
     return API.get('/posts/categories').then((res) => res.data)
+  },
+  getPostsByCategory(query) {
+    return API.get(`/posts/by-category?${query}`).then((res) => res.data)
   }
 }

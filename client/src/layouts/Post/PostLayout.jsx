@@ -1,6 +1,8 @@
 import React from 'react'
 import cn from 'classnames'
 import { useThemeContext } from '../../context/ThemeContext'
+import { usePostContext } from '../../context/PostContext'
+import { RelatedPosts } from '../../components/RelatedPosts/RelatedPosts'
 import { Navbar } from '../../components/common/Navbar/Navbar'
 import { Scroll } from '../../components/Scroll/Scroll'
 import { Footer } from '../../components/common/Footer/Footer'
@@ -8,6 +10,7 @@ import s from './PostLayout.module.sass'
 
 export const PostLayout = (Hero, Main, Aside) => {
   const Layout = () => {
+    const { post } = usePostContext()
     const { theme } = useThemeContext()
 
     return (
@@ -19,6 +22,7 @@ export const PostLayout = (Hero, Main, Aside) => {
             <div className={s.main}>
               <div className={s.content}>
                 <Main />
+                {Object.keys(post).length !== 0 && <RelatedPosts category={post.category.category} grid="two-column" />}
               </div>
               <aside className={s.aside}>
                 <Aside />

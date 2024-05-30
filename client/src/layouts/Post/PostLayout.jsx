@@ -6,6 +6,7 @@ import { RelatedPosts } from '../../components/RelatedPosts/RelatedPosts'
 import { Navbar } from '../../components/common/Navbar/Navbar'
 import { Scroll } from '../../components/Scroll/Scroll'
 import { Footer } from '../../components/common/Footer/Footer'
+import { PostSwitcher } from '../../components/PostSwitcher/PostSwitcher'
 import s from './PostLayout.module.sass'
 
 export const PostLayout = (Hero, Main, Aside) => {
@@ -22,6 +23,7 @@ export const PostLayout = (Hero, Main, Aside) => {
             <div className={s.main}>
               <div className={s.content}>
                 <Main />
+                {Object.keys(post).length !== 0 && <PostSwitcher slug={post.slug} />}
                 {Object.keys(post).length !== 0 && <RelatedPosts category={post.category.category} grid="two-column" />}
               </div>
               <aside className={s.aside}>

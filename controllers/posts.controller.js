@@ -47,5 +47,15 @@ export default {
     } catch (e) {
       console.error(e)
     }
+  },
+  getPostsToSwitch: async (req, res) => {
+    const slug = req.params.slug
+
+    try {
+      let result = await PostsService.getPostsToSwitch(slug)
+      res.status(200).send(result)
+    } catch (e) {
+      console.error(e)
+    }
   }
 }

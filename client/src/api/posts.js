@@ -12,5 +12,8 @@ export const postsAPI = {
   },
   getPostsByCategory(query) {
     return API.get(`/posts/by-category?${query}`).then((res) => res.data)
+  },
+  getPostsToSwitch(slug) {
+    return API.get(`/posts/switch/${slug}`).then((res) => res.data)
   }
 }

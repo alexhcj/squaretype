@@ -48,7 +48,11 @@ export default {
     const { limit = 10, offset = 0, category, sort = 'date', order = -1 } = query
 
     if (!category) {
-      const posts = await Post.find().sort({ [`${sort}`]: +order }).limit(limit).populate('category').exec()
+      const posts = await Post.find()
+        .sort({ [`${sort}`]: +order })
+        .limit(limit)
+        .populate('category')
+        .exec()
 
       return {
         posts
@@ -67,5 +71,33 @@ export default {
       posts: postsWithOffsetAndLimit,
       total: postsByCategory.length
     }
+  },
+  getPostsToSwitch: async (slug) => {
+    const { _id } = await Post.findOne({slug})
+    const prevPost = await Post.findOne({ _id: { $lt: _id } })
+      .sort({ _id: -1 })
+      .populate('category')
+      .exec()
+    const nextPost = await Post.findOne({ _id: { $gt: _id } })
+      .sort({ _id: 1 })
+      .populate('category')
+      .exec()
+
+    return [
+      prevPost
+        ? {
+            category: prevPost.category.category,
+            slug: prevPost.slug,
+            title: prevPost.title
+          }
+        : null,
+      nextPost
+        ? {
+            category: nextPost.category.category,
+            slug: nextPost.slug,
+            title: nextPost.title
+          }
+        : null
+    ]
   }
 }

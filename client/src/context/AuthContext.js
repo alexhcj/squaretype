@@ -1,11 +1,12 @@
-import { createContext } from 'react'
+import { createContext, useContext } from 'react'
+import { useLocalStorage } from '../hooks/useLocalStorage.hook'
 
-function noop() {}
+const AuthContext = createContext({})
 
-export const AuthContext = createContext({
-  token: null,
-  userId: null,
-  login: noop,
-  logout: noop,
-  isAuthenticated: false
-})
+export const useAuthContext = () => useContext(AuthContext)
+
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useLocalStorage('user', {})
+
+  return <AuthContext.Provider value={{ user, setUser }}>{children}</AuthContext.Provider>
+}

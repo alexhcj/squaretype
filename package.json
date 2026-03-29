@@ -1,9 +1,37 @@
 {
-  "name": "node_blog",
+  "name": "squaretype-backend",
   "version": "2.0.0",
-  "description": "Monorepo blog with nodejs and react",
+  "description": "RESTful API backend for SquareType - a MERN stack blog platform with JWT authentication and MongoDB integration",
   "type": "module",
   "main": "index.js",
+  "keywords": [
+    "blog",
+    "MERN",
+    "REST API",
+    "nodejs",
+    "express",
+    "mongodb",
+    "mongoose",
+    "jwt",
+    "authentication",
+    "backend"
+  ],
+  "author": {
+    "name": "Alex",
+    "email": "alexhcj@yandex.ru",
+    "url": "https://t.me/alex_hcj"
+  },
+  "license": "ISC",
+  "engines": {
+    "node": ">=24.14.0",
+    "npm": ">=11.9.0"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "server": "cross-env NODE_ENV=development nodemon index.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "config": "^3.3.3",
@@ -21,14 +49,5 @@
     "cross-env": "^7.0.3",
     "express-validator": "^7.1.0",
     "nodemon": "^3.1.1"
-  },
-  "scripts": {
-    "start": "node index.js",
-    "server": "cross-env NODE_ENV=development nodemon index.js",
-    "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  }
 }

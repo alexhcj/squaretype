@@ -19,6 +19,14 @@
     "url": "https://t.me/alex_hcj"
   },
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alexhcj/squaretype.git",
+    "directory": "client"
+  },
+  "bugs": {
+    "url": "https://github.com/alexhcj/squaretype/issues"
+  },
   "homepage": ".",
   "engines": {
     "node": ">=24.14.0",

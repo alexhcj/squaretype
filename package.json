@@ -22,6 +22,13 @@
     "url": "https://t.me/alex_hcj"
   },
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alexhcj/squaretype.git"
+  },
+  "bugs": {
+    "url": "https://github.com/alexhcj/squaretype/issues"
+  },
   "engines": {
     "node": ">=24.14.0",
     "npm": ">=11.9.0"
@@ -30,7 +37,8 @@
     "start": "node index.js",
     "server": "cross-env NODE_ENV=development nodemon index.js",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "install-all": "npm install && cd client && npm install"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

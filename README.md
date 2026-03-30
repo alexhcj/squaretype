@@ -18,7 +18,7 @@ A full-stack MERN blog platform with JWT authentication and responsive UI.
 
 ## Prerequisites
 
-- Node.js >= 24.4.0
+- Node.js >= 24.14.0
 - npm >= 11.9.0
 - MongoDB (local or Atlas)
 

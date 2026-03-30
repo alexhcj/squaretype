@@ -37,7 +37,7 @@ npm install-all
 
 3. **Environment Setup**
 
-   For backend create `.env` file in `/squaretype/config` directory:
+   For backend create `.env.development` file in `/squaretype/config` directory:
 ```env
 # Server Configuration
 PORT=5000

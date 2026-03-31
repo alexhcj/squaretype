@@ -11,6 +11,7 @@ import mongoose from 'mongoose'
 import cors from 'cors'
 import config from './config/index.js'
 import routes from './routes/index.js'
+import errorHandler from "./middlewares/error-handler.js";
 // import authRoute from './routes/auth.routes'
 
 // config envs
@@ -34,6 +35,8 @@ app.use(express.urlencoded({ extended: true }))
 app.use(`/${apiPrefix}/${apiVersion}`, routes)
 app.use('/static', express.static('public'))
 // app.use('/api/auth', authRoute)
+
+app.use(errorHandler)
 
 async function start() {
   try {

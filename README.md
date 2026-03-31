@@ -32,7 +32,7 @@ cd squaretype
 
 2. **Install all dependencies**
 ```bash
-npm install-all
+npm run install-all
 ```
 
 3. **Environment Setup**
@@ -103,12 +103,13 @@ squaretype/
 
 ## Available Scripts
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Run both backend and frontend |
-| `npm run server` | Run backend with nodemon |
-| `npm run client` | Run frontend dev server |
-| `npm start` | Run production server |
+| Command               | Description                          |
+|-----------------------|--------------------------------------|
+| `npm run install-all` | Install packages for back and client |
+| `npm run dev`         | Run both backend and frontend        |
+| `npm run server`      | Run backend with nodemon             |
+| `npm run client`      | Run frontend dev server              |
+| `npm start`           | Run production server                |
 
 
 ## Contributing

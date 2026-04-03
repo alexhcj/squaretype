@@ -36,8 +36,12 @@
   "scripts": {
     "start": "node index.js",
     "server": "cross-env NODE_ENV=development nodemon index.js",
+    "server:local": "cross-env NODE_ENV=local nodemon index.js",
+    "server:dev": "cross-env NODE_ENV=development nodemon index.js",
+    "server:prod": "cross-env NODE_ENV=production node index.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "dev:local": "concurrently \"npm run server:local\" \"npm run client\"",
     "install-all": "npm install && cd client && npm install"
   },
   "dependencies": {
@@ -55,7 +59,7 @@
     "casual": "^1.6.2",
     "concurrently": "^8.2.2",
     "cross-env": "^7.0.3",
-    "express-validator": "^7.1.0",
+    "express-validator": "^7.3.1",
     "nodemon": "^3.1.1"
   }
 }

@@ -4,6 +4,23 @@ dotenv.config({
   path: `./config/.env.${process.env.NODE_ENV}`
 })
 
+// Helper function to build MongoDB connection string
+const getMongoDBConnectionString = () => {
+  const isLocal = process.env.NODE_ENV === 'local'
+
+  if (isLocal) {
+    // Local MongoDB (Docker default - no auth)
+    if (!process.env.DB_USER || !process.env.DB_PASSWORD) {
+      return `mongodb://${process.env.DB_SERVER}/${process.env.DB_NAME}`
+    }
+    // Local MongoDB with authentication
+    return `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_SERVER}/${process.env.DB_NAME}`
+  }
+
+  // Cloud MongoDB Atlas
+  return `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_SERVER}/?retryWrites=true&w=majority&appName=Cluster0`
+}
+
 export default {
   node_env: process.env.NODE_ENV,
   port: parseInt(process.env.PORT, 10) || 9090,
@@ -18,7 +35,7 @@ export default {
   },
   mongodb: {
     database: {
-      connectionString: `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_SERVER}/?retryWrites=true&w=majority&appName=Cluster0`,
+      connectionString: getMongoDBConnectionString(),
       databaseName: process.env.DB_NAME
     }
   }

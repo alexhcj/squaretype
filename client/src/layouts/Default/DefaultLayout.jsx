@@ -8,12 +8,14 @@ export const DefaultLayout = ({ children }) => {
   const { isOpen, setIsOpen } = useSidebarModalContext()
 
   return (
-    <>
-      {children}
+    <div className="app-wrapper">
       <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
         <Sidebar />
       </Modal>
+      
+      {children} 
+      
       <Scroll />
-    </>
+    </div>
   )
 }

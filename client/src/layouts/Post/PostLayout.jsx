@@ -16,7 +16,6 @@ export const PostLayout = (Hero, Main, Aside) => {
 
     return (
       <div className={cn(s.page, s[`theme_${theme}`])}>
-        <Navbar />
         <div>
           <Hero />
           <div className={s.container}>
@@ -35,7 +34,6 @@ export const PostLayout = (Hero, Main, Aside) => {
         <div className={s.container}>
           <Footer />
         </div>
-        <Scroll />
       </div>
     )
   }

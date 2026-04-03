@@ -13,7 +13,6 @@ export const SearchLayout = (Hero, Main, Aside) => {
     return (
       <>
         <div className={cn(s.page, { [s.transformed]: isOpen }, theme === 'light' ? s.light : s.dark)}>
-          <Navbar />
           <header className={s.header}>
             <Hero />
           </header>

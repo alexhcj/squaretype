@@ -12,7 +12,7 @@ export const PostPage = () => {
   return (
     <PostProvider>
       <ThemeProvider>
-        <Layout />
+          <Layout />
       </ThemeProvider>
     </PostProvider>
   )

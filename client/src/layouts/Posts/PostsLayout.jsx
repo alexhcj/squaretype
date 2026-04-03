@@ -12,7 +12,6 @@ export const PostsLayout = (Hero, Main, Aside) => {
 
     return (
       <div className={cn(s.page, s[`theme_${theme}`])}>
-        <Navbar />
         <div>
           <Hero />
           <div className={s.container}>

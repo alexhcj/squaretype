@@ -5,11 +5,6 @@ export default {
   getPosts: async (query) => {
     const { limit = 10, offset = 0, sort = 'date', order = -1, category, search } = query
 
-    // Validate pagination parameters
-    if (+limit < 0 || +offset < 0) {
-      throw new AppError('Limit and offset must be non-negative', 400)
-    }
-
     const find = {}
 
     // Edge case: search filter
@@ -27,7 +22,7 @@ export default {
 
     // Edge case: category filter
     const filteredPosts = category
-      ? posts.filter((post) => post.category.category === category)
+      ? posts.filter((post) => post.category && post.category.category === category)
       : posts
 
     return {
@@ -36,6 +31,7 @@ export default {
       queryTotal: filteredPosts.length
     }
   },
+
   getPostBySlug: async (slug) => {
     // Edge case: slug not found
     const post = await Post.findOne({ slug }).populate('category')
@@ -46,6 +42,7 @@ export default {
 
     return post
   },
+
   getPostsCategories: async () => {
     const data = await Post.find().populate('category')
 
@@ -76,13 +73,9 @@ export default {
 
     return posts
   },
+
   getPostsByCategory: async (query) => {
     const { limit = 10, offset = 0, category, sort = 'date', order = -1 } = query
-
-    // Validate pagination parameters
-    if (+limit < 0 || +offset < 0) {
-      throw new AppError('Limit and offset must be non-negative', 400)
-    }
 
     // Edge case: no category provided
     if (!category) {
@@ -127,6 +120,7 @@ export default {
       total: postsByCategory.length
     }
   },
+
   getPostsToSwitch: async (slug) => {
     const currentPost = await Post.findOne({ slug })
 

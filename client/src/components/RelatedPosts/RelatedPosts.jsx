@@ -28,7 +28,7 @@ export const RelatedPosts = ({ category, grid = 'column', className }) => {
       ).toString()
 
       try {
-        const { posts } = await postsAPI.getPostsByCategory(query)
+        const { posts } = await postsAPI.getPostsCategory(query)
         setPosts(posts)
       } catch (e) {
         setIsError(true)

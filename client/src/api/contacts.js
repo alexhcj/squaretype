@@ -1,7 +1,9 @@
 import { API } from './api'
+import { buildQueryString } from '../utils/query-params'
 
 export const contactsAPI = {
-  getContacts(query) {
-    return API.get(`/contacts?${query}`).then((res) => res.data)
+  getContacts(query = {}) {
+    const params = buildQueryString(query)
+    return API.get(`/contacts?${params}`).then((res) => res.data)
   }
 }

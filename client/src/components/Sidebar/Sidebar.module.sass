@@ -1,60 +1,63 @@
 @import '../../sass/variables'
+@import '../../sass/grid'
 
 .aside
   position: fixed
   top: 0
-  left: -320px
-  display: grid
-  height: 100%
-  width: 320px
-  background-color: $white-color
+  left: -100% // Скрыт по умолчанию
+  width: 100%
+  max-width: 400px
+  height: 100vh
   z-index: $z-index-100
-  transition: $transition-default
-  transform: translate3d(0, 0, 0)
+  padding: 40px
+  transition: all $transition-default
+  display: flex
+  flex-direction: column
+  background-color: $white-color // Светлая тема по умолчанию
+  overflow-y: auto;
 
   &.open
-    transform: translate3d(320px, 0, 0)
+    left: 0
+
+  &.dark
+    background-color: $black-color-3 // Темный фон как на твоем скриншоте
+    color: $white-color
+
+    .header
+      .title
+        color: $white-color
+
+    .close_svg
+      fill: $white-color // Чтобы крестик был виден
+
+    // Стили для разделительных линий внутри Follow
+    :global(.follow-item)
+      border-bottom-color: $asphalt-color-10
 
   .header
-    display: grid
-    grid-auto-flow: column
+    display: flex
     justify-content: space-between
     align-items: center
-    padding: 20px
-    border-bottom: 1px solid $asphalt-color-2
+    margin-bottom: 40px
 
     .title
-      text-decoration: none
-      letter-spacing: -$transition-btn-default
-      font-size: 1.875rem
+      font-size: 24px
       font-weight: $weight-700
-      font-family: $font-space-grotesk
+      text-decoration: none
       color: $black-color
-      transition: $transition-default
-
-      &:hover
-        color: $cherry-color
 
     .btn
-      display: flex
-      justify-content: center
-      align-items: center
-      border-color: transparent
-      background-color: $white-color
+      background: none
+      border: none
       cursor: pointer
+      padding: 0
 
       .close_svg
-        width: 25px
-        height: 25px
+        width: 20px
+        height: 20px
         transition: $transition-default
 
-      &:hover
-        .close_svg
-          fill: $asphalt-color-3
-
   .content
-    display: grid
+    display: flex
+    flex-direction: column
     gap: 40px
-    padding: 20px
-    overflow-x: hidden
-    overflow-y: auto

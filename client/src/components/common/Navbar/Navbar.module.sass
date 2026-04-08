@@ -184,8 +184,15 @@
 			font-size: 1.875rem
 
 // theme
+// theme
 .nav
 	&.dark
+		background-color: $black-color-3 // Фон всего хедера
+
+		.top
+			background-color: $black-color-3
+			border-bottom: 1px solid $asphalt-color-10
+
 		.bottom
 			background-color: $black-color-3
 
@@ -195,34 +202,38 @@
 			.divider
 				background-color: $asphalt-color-10
 
+		// Логотип
 		.logo .link
 			color: $white-color
 
-		.icon
-			fill: $white-color
-
-		.subs
-			color: $asphalt-color-11
-
+		// Кнопка бургера
 		.burgerBtn
-			fill: $white-color
+			fill: $white-color !important // Принудительно белый
 
-			&:hover
+		// Иконки в правой части (профиль, поиск, тема)
+		.btn_meta
+			.icon
+				fill: $white-color !important // Принудительно белый
+			
+			&:hover .icon
 				fill: $asphalt-color-11
 
+		// Ссылки в меню
 		.links
 			.link
 				color: $white-color
-
 				&::after
 					background-color: $white-color
 
 			.chevron_icon
 				fill: $white-color
 
-		.meta
-			.icon
+		// Контакты в верхней части
+		.socialLink
+			.icon svg
 				fill: $white-color
+			.subs
+				color: $asphalt-color-11
 
 	&.light
 		.bottom

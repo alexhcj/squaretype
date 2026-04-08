@@ -1,7 +1,6 @@
 import React from 'react'
 import cn from 'classnames'
 import { useThemeContext } from '../../context/ThemeContext'
-import { Navbar } from '../../components/common/Navbar/Navbar'
 import { Scroll } from '../../components/Scroll/Scroll'
 import { Footer } from '../../components/common/Footer/Footer'
 import s from './PostsLayout.module.sass'

@@ -133,7 +133,7 @@ export const Navbar = ({ border }) => {
             </div>
           </div>
         </div>
-        <Search isOpen={isSearchOpen} setIsSearchOpen={setIsSearchOpen} />
+        <Search isOpen={isSearchOpen} setIsSearchOpen={setIsSearchOpen} theme={theme} />
       </div>
     </nav>
   )

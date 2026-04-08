@@ -24,7 +24,11 @@ export const Search = ({ isOpen, setIsSearchOpen }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (search === '') return
+      if (search === '') {
+        setPosts([])
+        setIsResultOpen(false)
+        return
+      }
       setIsError(false)
       setIsLoading(true)
       setIsResultOpen(true)
@@ -71,15 +75,18 @@ export const Search = ({ isOpen, setIsSearchOpen }) => {
 
   const clearSearch = () => {
     setSearch('')
+    setPosts([])
+    setIsResultOpen(false)
   }
 
   const handleFullSearch = (search) => {
-    navigate(`/search?${search}`)
+    navigate(`/search?search=${search}`)
   }
 
   const handleCloseSearch = () => {
     setIsResultOpen(false)
     setIsSearchOpen(false)
+    setSearch('')
   }
 
   const handleSearch = (e) => {
@@ -88,16 +95,17 @@ export const Search = ({ isOpen, setIsSearchOpen }) => {
 
   const handlePostClick = () => {
     setSearch('')
-    setIsSearchOpen(true)
+    setIsResultOpen(false)
+    setIsSearchOpen(false)
   }
 
   const handleFocus = (e) => {
     if (e.target.nodeName === 'BUTTON') return
-    setIsResultOpen(true)
+    if (search !== '') setIsResultOpen(true)
   }
 
   return (
-    <div className={s.box}>
+    <div className={cn(s.box, theme === 'light' ? s.light : s.dark)}>
       <div className={s.container}>
         <div className={cn(s.block, { [s.open]: isOpen }, theme === 'light' ? s.light : s.dark)}>
           <div className={s.search} ref={ref} onFocus={handleFocus}>
@@ -105,32 +113,33 @@ export const Search = ({ isOpen, setIsSearchOpen }) => {
               <button className={s.btn_search} type="button" onClick={() => handleFullSearch(debouncedSearch)}>
                 <MagnifierSVG className={s.icon} />
               </button>
+              
               <Input
-                className={s.input}
+                className={cn(s.input, theme === 'light' ? s.light : s.dark)}
                 id="search"
                 name="search"
                 value={search}
                 placeholder="Enter your search topic"
                 onChange={handleSearch}
+                autoComplete="off"
               />
-              {search && (
-                <button className={s.btn_reset} type="button" onClick={clearSearch}>
-                  x
-                </button>
-              )}
+
+              <div className={cn(s.result, { [s.open]: isResultOpen }, theme === 'light' ? s.light : s.dark)}>
+                {isLoading && <Preloader />}
+                {posts && posts.map((post) => (
+                  <SearchItem key={post.title} {...post} onClick={handlePostClick} />
+                ))}
+                {posts.length === 0 && search !== '' && !isLoading && (
+                   <div className={s.no_results}>No results found</div>
+                )}
+              </div>
+
+              {search && <button className={s.btn_reset} type="button" onClick={clearSearch}>x</button>}
               <button className={s.btn_close} type="button" onClick={handleCloseSearch}>
                 <XMarkSVG className={s.icon} />
               </button>
             </form>
           </div>
-        </div>
-        <div className={cn(s.result, { [s.open]: isResultOpen })}>
-          {isLoading && <Preloader />}
-          {isError && <div>Error</div>}
-          {posts &&
-            !isLoading &&
-            !isError &&
-            posts.map((post) => <SearchItem key={post.title} {...post} onClick={handlePostClick} />)}
         </div>
       </div>
     </div>

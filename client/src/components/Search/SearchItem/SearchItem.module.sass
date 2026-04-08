@@ -1,42 +1,66 @@
 @import '../../../sass/variables'
 
-.item
-  display: grid
-  grid-template: "img title type" auto "img date type" auto / 50px 1fr
-  align-items: center
-  gap: 4px 16px
-  padding: 16px
-  text-decoration: none
-  transition: $transition-default
+.article
+  padding: 10px
 
-  &:not(:last-child)
-    border-bottom: 1px solid $asphalt-color-2
+  .item
+    display: inline-flex
+    align-items: center
+    gap: 16px
+    padding: 16px
+    text-decoration: none
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05)
+    transition: background-color 0.2s
 
-  .img
-    grid-area: img
-    width: 100%
+    .img
+      width: 60px // Чуть меньше, чтобы было аккуратнее
+      height: 60px
+      flex-shrink: 0
+      object-fit: cover
+      border-radius: 2px
 
-  .title
-    grid-area: title
-    letter-spacing: -$letter-spacing-default
-    line-height: 1.25rem
-    font-family: $font-space-grotesk
-    font-weight: $weight-700
-    color: $black-color
+    .info
+      display: flex
+      flex-direction: column
+      flex-grow: 1
+      min-width: 0
+      gap: 2px
 
-  .date
-    grid-area: date
-    font-size: 0.875rem
-    font-family: $font-space-grotesk
-    font-weight: $weight-600
-    color: $black-color
+      .title
+        font-size: 15px
+        font-weight: 700
+        line-height: 1.2
+        margin: 0
+        color: #000
+        white-space: nowrap
+        overflow: hidden
+        text-overflow: ellipsis
 
-  .type
-    grid-area: type
-    font-size: 0.875rem
-    font-family: $font-space-grotesk
-    font-weight: $weight-600
-    color: $asphalt-color-3
+    .type
+      font-size: 10px
+      text-transform: uppercase
+      color: $gray-color
+      letter-spacing: 0.5px
 
-  &:hover
-    background-color: $asphalt-color-2
+    .date
+      font-size: 12px
+      font-family: $font-lato
+      color: $black-color
+      white-space: nowrap
+      margin-left: 10px
+
+  &.theme
+    &_dark
+      .item
+        .type
+          color: $gray-color
+          
+        .info
+          .title
+            color: #ffffff
+          
+          .date
+            color: $gray-color
+
+            &:hover
+              background-color: rgba(255, 255, 255, 0.05)

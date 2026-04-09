@@ -1,8 +1,9 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 import cn from 'classnames'
+
 import {useThemeContext} from '../../../context/ThemeContext'
-import {Title} from '../../../components/UI/Title/Title'
+import {Title} from "../../../shared/components/UI/Title/Title";
 import {ReactComponent as FacebookSVG} from '../../../assets/svg/socials/facebook.svg'
 import {ReactComponent as TwitterSVG} from '../../../assets/svg/socials/twitter.svg'
 import {ReactComponent as YoutubeSVG} from '../../../assets/svg/socials/youtube.svg'

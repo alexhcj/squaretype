@@ -1,0 +1,107 @@
+@import '../../../../shared/sass/_grid'
+@import '../../../../shared/sass/variables'
+
+.component
+    padding-top: 30px
+    margin-bottom: 60px
+
+    .content
+        position: relative
+        height: 652px
+
+        .article
+            position: relative
+            display: flex
+            flex-direction: column
+            padding: 40px 440px 48px 40px
+            max-width: 1200px
+            height: 100%
+            z-index: 10
+
+            .bg
+                position: absolute
+                top: 0
+                left: 0
+                width: 100%
+                height: 100%
+                z-index: $z-index--1
+
+                &::after
+                    position: absolute
+                    content: ''
+                    top: 0
+                    left: 0
+                    bottom: 0
+                    right: 0
+                    background-color: $coal-color
+
+                .img
+                    width: 100%
+                    height: 100%
+                    object-fit: cover
+                    object-position: 50% 50%
+
+            .category
+                margin-bottom: 24px
+
+                .categoryStyle
+                    display: flex
+                    align-items: center
+                    text-decoration: none
+
+                    &::before
+                        content: '—'
+                        order: 2
+                        padding: 0 .5rem
+                        color: $white-color
+
+                    .char
+                        display: flex
+                        justify-content: center
+                        width: 64px
+                        height: 64px
+                        line-height: 64px
+                        font-size: 48px
+                        font-weight: 600
+                        color: $white-color
+                        background-color: $cherry-color
+                        font-family: $font-space-grotesk
+
+                    .label
+                        order: 3
+                        text-transform: uppercase
+                        font-size: 12px
+                        font-weight: 600
+                        letter-spacing: 0.03em
+                        color: $white-color
+                        font-family: $font-space-grotesk
+            .title
+                margin-top: auto
+                margin-bottom: 24px
+
+                .title_link
+                    text-decoration: none
+                    font-size: 48px
+                    line-height: 1
+                    color: $white-color
+                    font-weight: $weight-700
+                    letter-spacing: -0.035em
+                    transition: $transition-default
+                    cursor: pointer
+
+                    &:hover
+                        color: $asphalt-color-4
+
+            .meta
+                margin-bottom: 24px
+
+            .previewText
+                margin-bottom: 48px
+                line-height: 1.5
+                font-size: 20px
+                color: $asphalt-color-5
+                font-family: $font-lato
+                display: -webkit-box
+                -webkit-line-clamp: 2
+                -webkit-box-orient: vertical
+                overflow: hidden

@@ -1,9 +1,10 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+
+import {getSizedImg} from "../../../../shared/utils/img";
+import {divideNumber} from "../../../../shared/utils/number";
 import { ReactComponent as LikeIcon } from '../../../../assets/like.svg'
 import { ReactComponent as CommentIcon } from '../../../../assets/comment.svg'
-import { getSizedImg } from '../../../../utils/img'
-import { divideNumber } from '../../../../utils/number'
 import s from './InstagramItem.module.sass'
 
 export const InstagramItem = ({ img, likes, comments }) => {

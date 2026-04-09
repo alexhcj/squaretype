@@ -1,7 +1,8 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 import cn from "classnames";
-import {calcDaysFromTweet} from '../../../../utils/date'
+
+import {calcDaysFromTweet} from "../../../../shared/utils/date";
 import {ReactComponent as TwitterIcon} from '../../../../assets/svg/socials/twitter.svg'
 import {ReactComponent as ReplyIcon} from '../../../../assets/reply.svg'
 import {ReactComponent as RetweetIcon} from '../../../../assets/retweet.svg'

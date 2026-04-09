@@ -1,0 +1,74 @@
+@import '../../../../../../shared/sass/variables'
+
+.item
+    display: flex
+    justify-content: space-between
+
+    .header
+        display: grid
+        width: 100%
+
+        .category
+            margin-bottom: 8px
+
+        .title_link
+            display: inline-flex
+            text-decoration: none
+
+            .title
+                margin-bottom: 4px
+                line-height: 1.25
+                font-size: 18px
+                font-weight: $weight-700
+                letter-spacing: -0.025em
+                color: $white-color
+                transition: $transition-default
+                cursor: pointer
+                overflow: hidden
+                text-overflow: ellipsis
+                display: -webkit-box
+                -webkit-line-clamp: 2
+                line-clamp: 2
+                -webkit-box-orient: vertical
+
+                &:hover
+                    color: $asphalt-color-4
+
+    .img_link
+        position: relative
+        margin-left: 10px
+        width: 80px
+        height: 80px
+
+        &::before
+            content: url('../../../../../../assets/arrow-right.svg')
+            position: absolute
+            display: block
+            top: 0
+            right: 0
+            bottom: 0
+            left: 0
+            margin: 0 auto
+            line-height: 80px
+            width: 16px
+            height: 16px
+            opacity: 0
+            transition: $transition-default
+            z-index: $z-index-10
+
+        &::after
+            content: ''
+            position: absolute
+            top: 0
+            right: 0
+            bottom: 0
+            left: 0
+            background-color: transparent
+            transition: $transition-default
+
+        &:hover
+            &::after
+                background-color: $coal-color-1
+
+            &::before
+                opacity: 1

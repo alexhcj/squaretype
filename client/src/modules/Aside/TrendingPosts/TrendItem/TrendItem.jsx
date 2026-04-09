@@ -1,7 +1,8 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import cn from 'classnames'
-import {getSizedImg} from '../../../../utils/img'
+
+import {getSizedImg} from "../../../../shared/utils/img";
 import s from './TrendItem.module.sass'
 
 export const TrendItem = ({slug, category, title, img, theme}) => {

@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import {NavLink} from 'react-router-dom'
 import cn from "classnames";
+
 import {useThemeContext} from '../../../context/ThemeContext'
-import {twitterAPI} from '../../../api/twitter'
 import {TweetItem} from './TweetItem/TweetItem'
-import {Button} from '../../../components/UI/Button/Button'
+import {twitterAPI} from "../../../shared/api/twitter";
+import {Button} from "../../../shared/components/UI/Button/Button";
 import s from './Twitter.module.sass'
 
 export const Twitter = () => {

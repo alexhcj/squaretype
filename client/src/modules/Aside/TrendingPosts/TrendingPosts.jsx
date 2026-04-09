@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react'
-import {postsAPI} from '../../../api/posts'
+
 import {useThemeContext} from '../../../context/ThemeContext'
 import {TrendItem} from './TrendItem/TrendItem'
-import {Title} from '../../../components/UI/Title/Title'
+import {postsAPI} from "../../../shared/api/posts";
+import {Title} from "../../../shared/components/UI/Title/Title";
 import s from './TrendingPosts.module.sass'
 
 export const TrendingPosts = () => {

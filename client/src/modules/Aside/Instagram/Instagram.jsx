@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react'
-import {instagramAPI} from '../../../api/instagram'
-import {InstagramItem} from './InstagramItem/InstagramItem'
-import {Title} from '../../../components/UI/Title/Title'
-import {Button} from '../../../components/UI/Button/Button'
-import s from './Instagram.module.sass'
+
 import {useThemeContext} from '../../../context/ThemeContext'
+import {InstagramItem} from './InstagramItem/InstagramItem'
+import {instagramAPI} from "../../../shared/api/instagram";
+import {Title} from "../../../shared/components/UI/Title/Title";
+import {Button} from "../../../shared/components/UI/Button/Button";
+import s from './Instagram.module.sass'
 
 export const Instagram = () => {
     const {theme} = useThemeContext()

@@ -1,0 +1,47 @@
+@import '../../../../shared/sass/grid'
+@import '../../../../shared/sass/variables'
+
+.page
+    transition: $transition-long-transform
+
+    &.light
+        background-color: $white-color
+
+    &.dark
+        background-color: $black-color-3
+
+    &.transformed
+        transform: translate3d(300px, 0, 0)
+
+    .nav
+        display: flex
+        margin: 0 auto
+        height: 50px
+        background-color: #505050
+
+    .header
+        &.light
+            background-color: $white-color
+
+        &.dark
+            background-color: $black-color-3
+
+    .main
+        display: flex
+        margin-top: 64px
+
+        .content
+            display: flex
+            flex-direction: column
+            flex: 0 0 900px
+            width: 900px
+
+        .aside
+            position: relative
+            flex: 0 0 300px
+            width: 300px
+
+    .footer
+
+// DONE: refactor structure
+// DONE: make layout sass!!!

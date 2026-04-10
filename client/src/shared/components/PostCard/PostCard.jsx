@@ -10,7 +10,7 @@ import s from './PostCard.module.sass'
 
 export const PostCard = ({ post }) => {
   const { theme } = useThemeContext()
-  let { slug, author, category, title, date, views, shares, previewText, img, read } = post
+  let { slug, author, category, title, date, views, shares, previewText, img, read, readingTime } = post
 
   const url = `${process.env.REACT_APP_BASE_URL}/${slug}`
 
@@ -20,7 +20,7 @@ export const PostCard = ({ post }) => {
         <Category size="small" themeColor="grey" category={category} />
       </div>
       <Link to={url} state={{ category: category.category }} className={s.img}>
-        <ImageWithOverlay img={img} alt={title} size='400x220' read={read} />
+        <ImageWithOverlay img={img} alt={title} size='400x220' read={read} readingTime={readingTime} />
       </Link>
       <h2 className={s.titleBox}>
         <Link to={url} state={{ category: category.category }} className={s.title}>
@@ -28,9 +28,18 @@ export const PostCard = ({ post }) => {
         </Link>
       </h2>
       <div className={s.metaBox}>
-        <PostMeta author={author} date={date} views={views} shares={shares} color="grey" theme={theme} />
+        <PostMeta 
+          author={author} 
+          date={date} 
+          views={views} 
+          shares={shares} 
+          readingTime={readingTime} 
+          color="grey" 
+          theme={theme} 
+        />
       </div>
       <div className={s.previewText}>{previewText}</div>
     </article>
   )
 }
+

@@ -11,9 +11,12 @@
 		margin-right: 8px
 		margin-left: 8px
 		content: "\00B7"
+		font-weight: $weight-700
 
 	.author
 		font-weight: $weight-500
+		display: flex
+		align-items: center
 
 		.authorLink
 			margin-left: 8px
@@ -22,13 +25,15 @@
 			transition: $transition-default
 			color: inherit
 
-	.date
+	.date, .views, .shares, .readingTime
 		font-weight: $weight-500
+		display: flex
+		align-items: center
 
 	.icon
 		display: inline-flex
 		align-items: center
-		margin-right: 4px
+		margin-right: 6px
 		width: 14px
 		height: 14px
 		font-weight: $weight-500
@@ -39,19 +44,17 @@
 
 			.author
 				color: $white-color
-
-				&:hover
+				.authorLink:hover
 					color: $white-color-1
 
 			.icon path
-				fill: $asphalt-color-6
+				fill: $white-color-1
 
 		&_grey
 			color: $asphalt-color-3
 
 			.authorLink
 				color: $black-color
-
 				&:hover
 					color: $asphalt-color-3
 
@@ -63,10 +66,8 @@
 
 				.author
 					color: $asphalt-color-11
-
 					.authorLink
 						color: $white-color
-
 						&:hover
 							color: $asphalt-color-11
 

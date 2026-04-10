@@ -36,7 +36,7 @@ export const PostHero = () => {
         fetchData()
     }, [slug])
 
-    let {img, title, category, author, date, views, shares} = post
+    let {img, title, category, author, date, views, shares, readingTime} = post
 
     return (
         <div className={s.block}>
@@ -51,7 +51,15 @@ export const PostHero = () => {
                                 <Breadcrumbs category={category.category} slug={slug}/>
                                 <Category size="large" category={category}/>
                                 <h1 className={s.title}>{title}</h1>
-                                <PostMeta author={author} date={date} views={views} shares={shares} color="white"/>
+                                <PostMeta 
+                                    author={author} 
+                                    date={date} 
+                                    views={views} 
+                                    shares={shares} 
+                                    readingTime={readingTime} 
+                                    showReadingTime={true} 
+                                    color="white"
+                                />
                             </>
                         )}
                     </div>

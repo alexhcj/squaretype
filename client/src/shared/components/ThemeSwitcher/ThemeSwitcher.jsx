@@ -1,4 +1,5 @@
 import React from "react";
+import cn from "classnames";
 
 import {useThemeContext} from "../../../context/ThemeContext";
 import { ReactComponent as MoonSVG } from '../../../assets/svg/moon.svg';
@@ -13,7 +14,7 @@ export const ThemeSwitcher = () => {
 	}
 
 	return (
-		<button className={s.btn_theme} type="button" onClick={handleTheme}>
+		<button className={cn(s.btn_theme, s[`theme_${theme}`])} type="button" onClick={handleTheme}>
 			{theme === 'light' ? <MoonSVG className={s.icon} /> : <SunSVG className={s.icon} />}
 		</button>
 	)

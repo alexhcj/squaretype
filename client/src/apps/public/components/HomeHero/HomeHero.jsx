@@ -41,7 +41,7 @@ export const HomeHero = () => {
         fetchData()
     }, [])
 
-    let {slug, category, title, author, img, date, views, shares, previewText} = post
+let {slug, category, title, author, img, date, views, shares, previewText, readingTime} = post
 
     const handleClick = () => {
         navigate(`/${slug}`, {state: {category: category.category}})
@@ -73,6 +73,7 @@ export const HomeHero = () => {
                                     date={date}
                                     views={views}
                                     shares={shares}
+                                    readingTime={readingTime} 
                                     type="hero"
                                     color="white"
                                     theme={theme}

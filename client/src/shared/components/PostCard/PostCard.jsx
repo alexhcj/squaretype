@@ -33,7 +33,6 @@ export const PostCard = ({ post }) => {
           date={date} 
           views={views} 
           shares={shares} 
-          readingTime={readingTime} 
           color="grey" 
           theme={theme} 
         />

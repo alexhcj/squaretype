@@ -9,46 +9,56 @@ import {PostCard} from "../../../../shared/components/PostCard/PostCard";
 import { ReactComponent as ChevronSVG } from '../../../../assets/svg/chevron.svg'
 import s from './Posts.module.sass'
 
-export const Posts = () => {
+export const Posts = ({ categoryName }) => {
   const { total, setTotal } = usePostContext()
   const [postsData, setPostsData] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false)
   const [offset, setOffset] = useState(0)
+  
   const location = useLocation()
-  const category = location.state ? location.state.category : ''
   const search = location.search.slice(1)
   const limit = 10
+
+  useEffect(() => {
+    setPostsData([])
+    setOffset(0)
+  }, [categoryName, search])
 
   useEffect(() => {
     const fetchData = async () => {
       setIsError(false)
       setIsLoading(true)
 
-      const query = new URLSearchParams({
+      const query = {
         limit,
         sort: 'date',
         offset,
-        category,
+        category: categoryName || '', 
         search
-      }).toString()
+      }
 
       try {
         const { posts, total } = await postsAPI.getPosts(query)
-        postsData.length === 0 ? setPostsData(posts) : setPostsData((prev) => [...prev, ...posts])
+        
+        if (offset === 0) {
+          setPostsData(posts)
+        } else {
+          setPostsData((prev) => [...prev, ...posts])
+        }
+        
         setTotal(total)
       } catch (e) {
         setIsError(true)
-        console.log(`Error while fetching data: ${e}`)
-        throw e
+        console.log(`Error: ${e}`)
       }
       setIsLoading(false)
     }
 
     fetchData()
-  }, [offset])
+  }, [offset, categoryName, search])
 
-  const loadMoreHandler = (e) => {
+    const loadMoreHandler = (e) => {
     e.preventDefault()
     setOffset(offset + limit)
   }
@@ -69,4 +79,5 @@ export const Posts = () => {
       )}
     </>
   )
-}
+} 
+

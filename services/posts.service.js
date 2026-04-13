@@ -1,5 +1,6 @@
 import Post from '../models/Post.js'
 import AppError from "../utils/app-error.js";
+import Category from '../models/Category.js';
 
 export default {
   getPosts: async (query) => {
@@ -7,30 +8,41 @@ export default {
 
     const find = {}
 
-    // Edge case: search filter
+    // Поиск по заголовку
     if (search) find.title = { $regex: `${search}`, $options: 'i' }
 
-    // Execute query
+    // Фильтрация по категории (через populate или агрегацию)
+    // Если в Post хранится ObjectId категории, сначала найдите ID категории
+    if (category) {
+        // Предполагаем, что в модели Post поле называется category (ссылка на модель Category)
+        // Если нужно фильтровать по СТРОКОВОМУ названию категории, 
+        // сначала получаем саму категорию:
+        const categoryDoc = await Category.findOne({ category: category });
+        if (categoryDoc) {
+            find.category = categoryDoc._id;
+        } else {
+            // Если категория не найдена, возвращаем пустой результат
+            return { posts: [], total: 0, queryTotal: 0 };
+        }
+    }
+
+    // Теперь countDocuments вернет правильное число
+    const totalEntities = await Post.countDocuments(find)
+
     const posts = await Post.find(find)
-      .sort({ [`${sort}`]: +order })
+      .sort({ [sort]: +order })
       .skip(+offset)
       .limit(+limit)
       .populate('category')
       .exec()
 
-    const totalEntities = await Post.find(find).countDocuments()
-
-    // Edge case: category filter
-    const filteredPosts = category
-      ? posts.filter((post) => post.category && post.category.category === category)
-      : posts
-
     return {
-      posts: filteredPosts,
+      posts,
       total: totalEntities,
-      queryTotal: filteredPosts.length
+      queryTotal: posts.length
     }
-  },
+},
+
 
   getPostBySlug: async (slug) => {
     // Edge case: slug not found

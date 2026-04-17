@@ -20,16 +20,24 @@
 
   &.grey
     .category
-      color: $asphalt-color-3
+      color: $asphalt-color-11
 
     &::before
-      color: $asphalt-color-3
+      color: $asphalt-color-11
 
     &:hover .category
       color: $black-color
-
       &::after
         background-color: $black-color
+
+    :global([class*="theme_dark"]) &:hover
+      .category
+        color: $white-color !important
+        &::after
+          background-color: $white-color !important
+
+      &::before
+        color: $asphalt-color-11 !important 
 
   .char
     text-transform: capitalize

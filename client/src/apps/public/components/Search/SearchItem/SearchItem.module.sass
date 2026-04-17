@@ -11,13 +11,14 @@
     text-decoration: none
     border-bottom: 1px solid rgba(255, 255, 255, 0.05)
     transition: background-color 0.2s
+    &:hover
+      background-color: $asphalt-color-2
 
     .img
-      width: 60px // Чуть меньше, чтобы было аккуратнее
+      width: 60px
       height: 60px
       flex-shrink: 0
       object-fit: cover
-      border-radius: 2px
 
     .info
       display: flex
@@ -27,31 +28,36 @@
       gap: 2px
 
       .title
-        font-size: 15px
+        font-size: 16px
         font-weight: 700
         line-height: 1.2
         margin: 0
         color: #000
+        font-family: $font-space-grotesk
         white-space: nowrap
         overflow: hidden
         text-overflow: ellipsis
 
     .type
-      font-size: 10px
-      text-transform: uppercase
-      color: $gray-color
+      font-size: 14px
+      text-transform: capitalize
+      color: $asphalt-color-3
+      font-family: $font-space-grotesk
       letter-spacing: 0.5px
 
     .date
-      font-size: 12px
-      font-family: $font-lato
-      color: $black-color
+      font-size: 14px
+      font-family: $font-space-grotesk
+      color: $cherry-color
       white-space: nowrap
-      margin-left: 10px
+      margin-top: 4px
+
 
   &.theme
     &_dark
       .item
+        &:hover
+          background-color: $asphalt-color-10
         .type
           color: $gray-color
 
@@ -60,7 +66,7 @@
             color: #ffffff
 
           .date
-            color: $gray-color
+            color: $asphalt-color-11
 
             &:hover
               background-color: rgba(255, 255, 255, 0.05)

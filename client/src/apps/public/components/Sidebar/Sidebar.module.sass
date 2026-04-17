@@ -4,24 +4,28 @@
 .aside
   position: fixed
   top: 0
-  left: -100% // Скрыт по умолчанию
+  left: -100%
   width: 100%
   max-width: 400px
   height: 100vh
   z-index: $z-index-100
   padding: 40px
-  transition: all $transition-default
+  // Каждое свойство строго на новой строке!
+  transition: left $transition-default, background-color $transition-default 
   display: flex
   flex-direction: column
-  background-color: $white-color // Светлая тема по умолчанию
+  background-color: transparent 
   overflow-y: auto
 
   &.open
     left: 0
+    background-color: $white-color 
 
   &.dark
-    background-color: $black-color-3 // Темный фон как на твоем скриншоте
+    &.open
+      background-color: $black-color-3 !important
     color: $white-color
+    
 
     .header
       .title

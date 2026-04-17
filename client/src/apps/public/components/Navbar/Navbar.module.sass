@@ -62,8 +62,7 @@
 	.bottom
 		z-index: $z-index-100
 
-		&.border
-			border-bottom: 1px solid transparent
+		
 
 		&.sticky
 			position: fixed
@@ -184,19 +183,19 @@
 			font-size: 1.875rem
 
 // theme
-// theme
 .nav
 	&.dark
-		background-color: $black-color-3 // Фон всего хедера
+		background-color: $black-color-3
 
 		.top
 			background-color: $black-color-3
-			border-bottom: 1px solid $asphalt-color-10
+			border-bottom: 1px solid transparent 
 
 		.bottom
 			background-color: $black-color-3
 
 			&.border
+				// ВОЗВРАЩАЕМ ЛИНИЮ. Она будет видна в закрытом состоянии.
 				border-bottom-color: $asphalt-color-10
 
 			.divider
@@ -208,15 +207,26 @@
 
 		// Кнопка бургера
 		.burgerBtn
-			fill: $white-color !important // Принудительно белый
+			fill: $white-color
+			transition: $transition-default
+			&:hover
+				fill: $asphalt-color-11 !important
 
-		// Иконки в правой части (профиль, поиск, тема)
+		// Иконки в правой части (профиль, поиск)
 		.btn_meta
 			.icon
-				fill: $white-color !important // Принудительно белый
-
+				fill: $white-color
+				transition: $transition-default
 			&:hover .icon
-				fill: $asphalt-color-11
+				fill: $asphalt-color-11 !important
+
+		// Переключатель темы (ThemeSwitcher)
+		:global(.ThemeSwitcher)
+			svg
+				fill: $white-color
+				transition: $transition-default
+			&:hover svg
+				fill: $asphalt-color-11 !important
 
 		// Ссылки в меню
 		.links
@@ -224,7 +234,6 @@
 				color: $white-color
 				&::after
 					background-color: $white-color
-
 			.chevron_icon
 				fill: $white-color
 
@@ -238,35 +247,40 @@
 	&.light
 		.bottom
 			background-color: $white-color
-
 			&.border
-				border-bottom-color: $asphalt-color-2
-
-				.divider
-					background-color: $asphalt-color-2
+				// ВОЗВРАЩАЕМ ЛИНИЮ для светлой темы
+				border-top-color: $asphalt-color-2
+			.divider
+				background-color: $asphalt-color-2
 
 		.logo .link
 			color: $black-color
 
-		&.icon
-			fill: $black-color
-
-		.subs
-			color: $asphalt-color-3
-
 		.burgerBtn
 			fill: $black-color
-
+			transition: $transition-default
 			&:hover
-				fill: $asphalt-color-9
+				fill: $asphalt-color-9 !important
+
+		.btn_meta
+			.icon
+				fill: $black-color
+				transition: $transition-default
+			&:hover .icon
+				fill: $asphalt-color-9 !important
+
+		:global(.ThemeSwitcher)
+			svg
+				fill: $black-color
+				transition: $transition-default
+			&:hover svg
+				fill: $asphalt-color-9 !important
 
 		.links
 			.link
 				color: $black-color
-
 				&::after
 					background-color: $black-color
-
 			.chevron_icon
 				fill: $black-color
 

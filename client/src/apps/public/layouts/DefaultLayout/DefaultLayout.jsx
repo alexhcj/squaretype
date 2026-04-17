@@ -1,17 +1,21 @@
 import React from 'react'
-import {Outlet} from "react-router-dom";
+import { Outlet } from "react-router-dom"
+import cn from 'classnames'
 
-import {useSidebarModalContext} from "../../../../context/SidebarModalContext";
-import {Navbar} from "../../components/Navbar/Navbar";
-import {Modal} from "../../../../shared/components/Modal/Modal";
+import { useSidebarModalContext } from "../../../../context/SidebarModalContext"
+import { useThemeContext } from "../../../../context/ThemeContext"
+import { Navbar } from "../../components/Navbar/Navbar"
+import { Modal } from "../../../../shared/components/Modal/Modal"
 import { Sidebar } from '../../components/Sidebar/Sidebar'
-import {Scroll} from "../../../../shared/components/Scroll/Scroll";
+import { Scroll } from "../../../../shared/components/Scroll/Scroll"
+import s from './DefaultLayout.module.sass'
 
 export const DefaultLayout = () => {
   const { isOpen, setIsOpen } = useSidebarModalContext()
+  const { theme } = useThemeContext()
 
   return (
-    <div className="app-wrapper">
+    <div className={cn("app-wrapper", theme === 'light' ? s.light : s.dark)}>
       <Navbar border={true} />
       <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
         <Sidebar />

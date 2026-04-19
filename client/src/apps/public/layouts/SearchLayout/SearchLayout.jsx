@@ -21,9 +21,6 @@ export const SearchLayout = ({hero, main, aside}) => {
             <aside className={s.aside}>{aside}</aside>
           </main>
         </div>
-        <div className={s.container}>
-          <footer className={s.footer}>Footer</footer>
-        </div>
       </div>
     </>
   )

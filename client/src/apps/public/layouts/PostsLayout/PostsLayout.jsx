@@ -2,8 +2,6 @@ import React from 'react'
 import cn from 'classnames'
 
 import {useThemeContext} from "../../../../context/ThemeContext";
-import {Footer} from "../../../../shared/components/Footer/Footer";
-import {Scroll} from "../../../../shared/components/Scroll/Scroll";
 import s from './PostsLayout.module.sass'
 
 export const PostsLayout = ({hero, main, aside}) => {
@@ -20,10 +18,6 @@ export const PostsLayout = ({hero, main, aside}) => {
           </div>
         </div>
       </div>
-      <div className={s.container}>
-        <Footer />
-      </div>
-      <Scroll />
     </div>
   )
 }

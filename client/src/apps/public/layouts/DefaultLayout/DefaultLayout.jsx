@@ -9,6 +9,7 @@ import { Modal } from "../../../../shared/components/Modal/Modal"
 import { Sidebar } from '../../components/Sidebar/Sidebar'
 import { Scroll } from "../../../../shared/components/Scroll/Scroll"
 import s from './DefaultLayout.module.sass'
+import { Footer } from '../../components/Footer/Footer'
 
 export const DefaultLayout = () => {
   const { isOpen, setIsOpen } = useSidebarModalContext()
@@ -22,6 +23,8 @@ export const DefaultLayout = () => {
       </Modal>
 
       <Outlet />
+
+      <Footer />
 
       <Scroll />
     </div>

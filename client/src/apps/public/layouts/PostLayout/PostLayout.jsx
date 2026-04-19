@@ -5,7 +5,6 @@ import {usePostContext} from "../../../../context/PostContext";
 import {useThemeContext} from "../../../../context/ThemeContext";
 import { RelatedPosts } from '../../components/RelatedPosts/RelatedPosts'
 import { PostSwitcher } from '../../components/PostSwitcher/PostSwitcher'
-import {Footer} from "../../../../shared/components/Footer/Footer";
 import s from './PostLayout.module.sass'
 
 export const PostLayout = ({hero, main, aside}) => {
@@ -26,9 +25,6 @@ export const PostLayout = ({hero, main, aside}) => {
             <aside className={s.aside}>{aside}</aside>
           </div>
         </div>
-      </div>
-      <div className={s.container}>
-        <Footer />
       </div>
     </div>
   )

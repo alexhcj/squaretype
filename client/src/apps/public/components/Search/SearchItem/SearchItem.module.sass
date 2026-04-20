@@ -9,8 +9,9 @@
     gap: 16px
     padding: 16px
     text-decoration: none
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05)
-    transition: background-color 0.2s
+    border-bottom: $asphalt-color-2
+    transition: $transition-default
+    
     &:hover
       background-color: $asphalt-color-2
 
@@ -29,10 +30,10 @@
 
       .title
         font-size: 16px
-        font-weight: 700
+        font-weight: $weight-700
         line-height: 1.2
         margin: 0
-        color: #000
+        color: $black-color
         font-family: $font-space-grotesk
         white-space: nowrap
         overflow: hidden
@@ -63,10 +64,10 @@
 
         .info
           .title
-            color: #ffffff
+            color: $white-color
 
           .date
             color: $asphalt-color-11
 
             &:hover
-              background-color: rgba(255, 255, 255, 0.05)
+              background-color: $asphalt-color-2

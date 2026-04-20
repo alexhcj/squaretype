@@ -9,35 +9,12 @@
     content: '—'
     order: 2
     padding: 0 .5rem
-    color: $white-color-1
-
-  &:hover .category
     color: $white-color
 
-    &::after
-      transform: translateY(1px)
+  &:hover
+    .category::after
       opacity: 1
-
-  &.grey
-    .category
-      color: $asphalt-color-11
-
-    &::before
-      color: $asphalt-color-11
-
-    &:hover .category
-      color: $black-color
-      &::after
-        background-color: $black-color
-
-    :global([class*="theme_dark"]) &:hover
-      .category
-        color: $white-color !important
-        &::after
-          background-color: $white-color !important
-
-      &::before
-        color: $asphalt-color-11 !important 
+      transform: translateY(1px)
 
   .char
     text-transform: capitalize
@@ -84,3 +61,41 @@
       transform: translateY(4px)
       background-color: $white-color
       transition: $transition-cubic
+
+  &.grey
+    .category
+      color: $asphalt-color-11
+    &::before
+      color: $asphalt-color-11
+    &:hover .category
+      color: $black-color
+      &::after
+        background-color: $black-color
+
+//themes
+.link
+  &.theme
+    &_light
+      &::before
+        color: $asphalt-color-11
+
+    &_dark
+      &::before
+        color: $asphalt-color-11
+
+      .category
+        color: $asphalt-color-11
+
+      &.grey:hover
+        .category
+          color: $white-color
+          &::after
+            background-color: $white-color
+        &::before
+          color: $asphalt-color-11
+
+      &:hover:not(.grey)
+        .category
+          color: $white-color
+        &::before
+          color: $asphalt-color-11

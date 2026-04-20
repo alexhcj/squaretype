@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import cn from 'classnames'
 
+import { useThemeContext } from '../../../../context/ThemeContext'
 import { useLocalStorage } from "../../../../hooks/useLocalStorage.hook";
 import { divideNumber } from "../../../../shared/utils/number";
 import { ReactComponent as FacebookSVG } from '../../../../assets/svg/socials/facebook.svg';
@@ -35,9 +36,10 @@ const footerLinks = [
 ]
 
 export const Footer = () => {
-    const [contacts] = useLocalStorage('contacts', []) 
+    const { theme } = useThemeContext()
+    const [contacts] = useLocalStorage('contacts', [])
 
-  return <footer>
+  return <footer className={cn(s.footer, s[`theme_${theme}`])}>
     <div className={s.container}>
         <div className={s.top}>
             123

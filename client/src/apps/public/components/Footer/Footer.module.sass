@@ -85,19 +85,24 @@
 			&.telegram
 				color: $telegram-color
 
-:global([class*="dark"])
-	.logo, .footer_link, .socialLink
-		color: $white-color !important
+//theme
+.footer
+	&.theme
+		&_dark
+			background-color: $black-color-3
 
-	.text
-		color: $asphalt-color-13 !important
-		
-	.socialLink:hover
-		&.facebook
-			color: $facebook-color !important
-		&.twitter
-			color: $twitter-color !important
-		&.vk
-			color: $vk-color !important
-		&.telegram
-			color: $telegram-color !important
+			.logo, .footer_link, .socialLink
+				color: $white-color
+
+			.text
+				color: $asphalt-color-13
+
+			.socialLink:hover
+				&.facebook
+					color: $facebook-color
+				&.twitter
+					color: $twitter-color
+				&.vk
+					color: $vk-color
+				&.telegram
+					color: $telegram-color

@@ -16,7 +16,7 @@ export const DefaultLayout = () => {
   const { theme } = useThemeContext()
 
   return (
-    <div className={cn("app-wrapper", theme === 'light' ? s.light : s.dark)}>
+    <div className={cn(s.appWrapper, theme === 'light' ? s.light : s.dark)}>
       <Navbar border={true} />
       <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
         <Sidebar />

@@ -208,9 +208,8 @@
 		// Кнопка бургера
 		.burgerBtn
 			fill: $white-color
-			transition: $transition-default
 			&:hover
-				fill: $asphalt-color-11 !important
+				fill: $asphalt-color-11
 
 		// Иконки в правой части (профиль, поиск)
 		.btn_meta
@@ -221,12 +220,12 @@
 				fill: $asphalt-color-11 !important
 
 		// Переключатель темы (ThemeSwitcher)
-		:global(.ThemeSwitcher)
+		.themeSwitcher
 			svg
 				fill: $white-color
 				transition: $transition-default
 			&:hover svg
-				fill: $asphalt-color-11 !important
+				fill: $asphalt-color-11
 
 		// Ссылки в меню
 		.links
@@ -248,7 +247,6 @@
 		.bottom
 			background-color: $white-color
 			&.border
-				// ВОЗВРАЩАЕМ ЛИНИЮ для светлой темы
 				border-top-color: $asphalt-color-2
 			.divider
 				background-color: $asphalt-color-2
@@ -258,23 +256,14 @@
 
 		.burgerBtn
 			fill: $black-color
-			transition: $transition-default
 			&:hover
-				fill: $asphalt-color-9 !important
+				fill: $asphalt-color-9
 
 		.btn_meta
 			.icon
 				fill: $black-color
-				transition: $transition-default
 			&:hover .icon
-				fill: $asphalt-color-9 !important
-
-		:global(.ThemeSwitcher)
-			svg
-				fill: $black-color
-				transition: $transition-default
-			&:hover svg
-				fill: $asphalt-color-9 !important
+				fill: $asphalt-color-9
 
 		.links
 			.link

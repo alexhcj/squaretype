@@ -9,11 +9,11 @@
     gap: 16px
     padding: 16px
     text-decoration: none
-    border-bottom: $asphalt-color-2
+    border-bottom: 1px solid $asphalt-color-10
     transition: $transition-default
-    
+
     &:hover
-      background-color: $asphalt-color-2
+      background-color: $asphalt-color-10
 
     .img
       width: 60px
@@ -30,7 +30,7 @@
 
       .title
         font-size: 16px
-        font-weight: $weight-700
+        font-weight: $weight-600
         line-height: 1.2
         margin: 0
         color: $black-color
@@ -52,22 +52,27 @@
       color: $cherry-color
       white-space: nowrap
       margin-top: 4px
-
+      background-color: transparent
 
   &.theme
     &_dark
       .item
-        &:hover
-          background-color: $asphalt-color-10
-        .type
-          color: $gray-color
+      border-bottom-color: $asphalt-color-10
 
-        .info
-          .title
-            color: $white-color
 
-          .date
-            color: $asphalt-color-11
+      .type
+        color: $gray-color
 
-            &:hover
-              background-color: $asphalt-color-2
+      .info
+        .title
+          color: $white-color
+
+        .date
+          color: $asphalt-color-11
+          // Убрали блок &:hover с фоном отсюда
+          background-color: transparent
+
+    &_light
+      .item
+      &:hover
+        background-color: $asphalt-color-2

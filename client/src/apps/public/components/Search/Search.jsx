@@ -127,15 +127,21 @@ export const Search = ({ isOpen, setIsSearchOpen }) => {
 
               <div className={cn(s.result, { [s.open]: isResultOpen }, theme === 'light' ? s.light : s.dark)}>
                 {isLoading && <Preloader />}
-                {posts && posts.map((post) => (
-                  <SearchItem key={post.title} {...post} onClick={handlePostClick} />
-                ))}
+                {posts &&
+                  posts.slice(0, 5).map((post) => <SearchItem key={post.title} {...post} onClick={handlePostClick} />)}
+                {posts && posts.length > 5 && (
+                  <div className={s.more_results}>And {posts.length - 5} more results...</div>
+                )}
                 {posts.length === 0 && search !== '' && !isLoading && (
-                   <div className={s.no_results}>No results found</div>
+                  <div className={s.no_results}>No results found</div>
                 )}
               </div>
 
-              {search && <button className={s.btn_reset} type="button" onClick={clearSearch}>x</button>}
+              {search && (
+                <button className={s.btn_reset} type="button" onClick={clearSearch}>
+                  x
+                </button>
+              )}
               <button className={s.btn_close} type="button" onClick={handleCloseSearch}>
                 <XMarkSVG className={s.icon} />
               </button>

@@ -14,28 +14,32 @@ export const HeroList = () => {
     const [isError, setIsError] = useState(false)
 
     useEffect(() => {
-        const fetchData = async () => {
-            setIsError(false)
-            setIsLoading(true)
+      const fetchData = async () => {
+        setIsError(false)
+        setIsLoading(true)
 
-            const query = new URLSearchParams({
-                limit: 5,
-                sort: 'date'
-            }).toString()
+        const query = new URLSearchParams({
+          limit: 5,
+          sort: 'date'
+        }).toString()
 
-            try {
-                const {posts} = await postsAPI.getPosts(query)
-                setPosts(posts)
-            } catch (e) {
-                setIsError(true)
-            }
-            setIsLoading(false)
+        try {
+          const response = await postsAPI.getPosts(query)
+          const fetchedPosts = response.posts || []
+          setPosts(fetchedPosts.slice(0, 5))
+        } catch (e) {
+          setIsError(true)
+          console.error('Ошибка загрузки постов:', e)
+        } finally {
+          setIsLoading(false)
         }
+      }
 
-        fetchData()
+      fetchData()
     }, [])
 
-    return (
+
+  return (
         <div className={cn(s.items, theme === 'light' ? s.light : s.dark)}>
             {isError && <div>Something went wrong ...</div>}
 

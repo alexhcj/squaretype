@@ -62,8 +62,6 @@
 	.bottom
 		z-index: $z-index-100
 
-		
-
 		&.sticky
 			position: fixed
 			top: 0
@@ -149,10 +147,6 @@
 						height: 16px
 						transition: $transition_default
 
-					&:hover
-						.icon
-							fill: $asphalt-color-3
-
 				.divider
 					width: 1px
 					height: 32px
@@ -189,65 +183,61 @@
 
 		.top
 			background-color: $black-color-3
-			border-bottom: 1px solid transparent 
 
 		.bottom
 			background-color: $black-color-3
 
 			&.border
-				// ВОЗВРАЩАЕМ ЛИНИЮ. Она будет видна в закрытом состоянии.
 				border-bottom-color: $asphalt-color-10
 
 			.divider
 				background-color: $asphalt-color-10
 
-		// Логотип
+		// Logo
 		.logo .link
 			color: $white-color
 
-		// Кнопка бургера
+		// Burger button
 		.burgerBtn
 			fill: $white-color
+
 			&:hover
 				fill: $asphalt-color-11
 
-		// Иконки в правой части (профиль, поиск)
+		// Icons in right part (profile, search)
 		.btn_meta
 			.icon
 				fill: $white-color
-				transition: $transition-default
-			&:hover .icon
-				fill: $asphalt-color-11 !important
 
-		// Переключатель темы (ThemeSwitcher)
-		.themeSwitcher
-			svg
-				fill: $white-color
-				transition: $transition-default
-			&:hover svg
+			&:hover .icon
 				fill: $asphalt-color-11
 
-		// Ссылки в меню
+		// Links in menu
 		.links
 			.link
 				color: $white-color
+
 				&::after
 					background-color: $white-color
+
 			.chevron_icon
 				fill: $white-color
 
-		// Контакты в верхней части
+		// Contacts in top part
 		.socialLink
 			.icon svg
 				fill: $white-color
+
 			.subs
 				color: $asphalt-color-11
 
 	&.light
 		.bottom
 			background-color: $white-color
+
 			&.border
 				border-top-color: $asphalt-color-2
+
 			.divider
 				background-color: $asphalt-color-2
 
@@ -256,22 +246,30 @@
 
 		.burgerBtn
 			fill: $black-color
+
 			&:hover
 				fill: $asphalt-color-9
 
 		.btn_meta
 			.icon
 				fill: $black-color
+
 			&:hover .icon
 				fill: $asphalt-color-9
 
 		.links
 			.link
 				color: $black-color
+
 				&::after
 					background-color: $black-color
+
 			.chevron_icon
 				fill: $black-color
+
+		.socialLink
+			.subs
+				color: $asphalt-color-3
 
 		.meta
 			.icon

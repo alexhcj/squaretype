@@ -10,22 +10,21 @@
   height: 100vh
   z-index: $z-index-100
   padding: 40px
-  // Каждое свойство строго на новой строке!
-  transition: left $transition-default, background-color $transition-default 
+  transition: left $transition-default, background-color $transition-default
   display: flex
   flex-direction: column
-  background-color: transparent 
+  background-color: transparent
   overflow-y: auto
 
   &.open
     left: 0
-    background-color: $white-color 
+    background-color: $white-color
 
   &.dark
     &.open
       background-color: $black-color-3
     color: $white-color
-    
+
 
     .header
       .title

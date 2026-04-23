@@ -16,17 +16,17 @@ export const Category = ({size = 'small', themeColor = 'white', category: {categ
             <NavLink
                 to={`/posts/${category}`}
                 state={{category: category}}
-                className={cn(s.link, themeColor === 'grey' && s.grey, className)}
+                className={cn(s.link, themeColor && s[`${themeColor}`], s[`theme_${theme}`], className)}
             >
-        <span
-            className={cn(s.char, size && s[`${size}`], theme === 'dark' && s.dark)}
-            style={theme !== 'dark' ? {backgroundColor: `${color}`} : {}}
-        >
-          {category[0]}
-        </span>
-                <span className={cn(s.category, themeColor)}>
-          {category.includes('-') ? stringDashedToNormal(category) : category}
-        </span>
+                <span
+                    className={cn(s.char, size && s[`${size}`])}
+                    style={theme !== 'dark' ? {backgroundColor: `${color}`} : {}}
+                >
+                  {category[0]}
+                </span>
+                <span className={s.category}>
+                  {category.includes('-') ? stringDashedToNormal(category) : category}
+                </span>
             </NavLink>
         )
     )

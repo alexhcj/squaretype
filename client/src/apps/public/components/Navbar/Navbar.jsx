@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import cn from 'classnames'
 
 import {useSidebarModalContext} from "../../../../context/SidebarModalContext";
 import {useThemeContext} from "../../../../context/ThemeContext";
-import {useLocalStorage} from "../../../../hooks/useLocalStorage.hook";
+import { useContactsContext } from '../../../../context/ContactsContext'
 import {useScrollDirection} from "../../../../hooks/useScrollDirection.hook";
 import {Search} from "../Search/Search";
-import {contactsAPI} from "../../../../shared/api/contacts";
 import {divideNumber} from "../../../../shared/utils/number";
 import {Button} from "../../../../shared/components/UI/Button/Button";
 import {CategoryDropdown} from "../../../../shared/components/UI/CategoryDropdown/CategoryDropdown";
@@ -34,10 +33,11 @@ const icons = [
 export const Navbar = ({ border }) => {
   const { isOpen, setIsOpen } = useSidebarModalContext()
   const { theme } = useThemeContext()
-  const [contacts, setContacts] = useLocalStorage('contacts', [])
+  const { contacts } = useContactsContext()
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [sticky, setSticky] = useState(false)
   const direction = useScrollDirection()
+
 
   const stickyMenu = () => {
     document.scrollingElement.scrollTop >= 100 ? setSticky(true) : setSticky(false)
@@ -52,14 +52,6 @@ export const Navbar = ({ border }) => {
   }
 
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await contactsAPI.getContacts()
-      setContacts(data)
-    }
-    fetchData()
-  }, [])
-
-  useEffect(() => {
     window.addEventListener('scroll', stickyMenu)
     return () => window.removeEventListener('scroll', stickyMenu)
   }, [])
@@ -68,21 +60,27 @@ export const Navbar = ({ border }) => {
     setIsSearchOpen(!isSearchOpen)
   }
 
+  const memoizedSocials = useMemo(() => {
+    return contacts.map(({ contact, subsTotal }) => {
+      const iconData = icons.find((item) => item.contact === contact)
+      if (iconData) {
+        return (
+          <Link key={contact} to="/" className={cn(s.socialLink, s[contact])}>
+            <div className={s.icon}>{iconData.icon}</div>
+            <div className={s.subs}>{divideNumber(subsTotal)}</div>
+          </Link>
+        )
+      }
+      return null
+    })
+  }, [contacts])
+
   return (
     <nav className={cn(s.nav, { [s.bottom_sticky]: sticky }, theme === 'light' ? s.light : s.dark)}>
       <div className={s.container}>
         <div className={s.top}>
           <div className={s.contacts}>
-            {contacts.map(({ contact, subsTotal }) => {
-              if (icons.find((item) => item.contact === contact)) {
-                return (
-                  <Link to="/" key={contact} className={cn(s.socialLink, s[contact])}>
-                    <div className={s.icon}>{icons.find((item) => item.contact === contact).icon}</div>
-                    <div className={s.subs}>{divideNumber(subsTotal)}</div>
-                  </Link>
-                )
-              }
-            })}
+            {memoizedSocials}
           </div>
           <div className={s.logo}>
             <Link to="/" className={s.link}>
@@ -124,7 +122,7 @@ export const Navbar = ({ border }) => {
               <button className={s.btn_meta} type="button" onClick={toggleSearch}>
                 <MagnifierSVG className={s.icon} />
               </button>
-              <ThemeSwitcher/>
+              <ThemeSwitcher />
             </div>
           </div>
         </div>

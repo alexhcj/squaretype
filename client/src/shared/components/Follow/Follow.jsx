@@ -1,52 +1,28 @@
-import React, {useEffect, useState} from 'react'
+import React, { useMemo } from 'react'
 import cn from 'classnames'
-
-import {useThemeContext} from '../../../context/ThemeContext'
-import {contactsAPI} from "../../api/contacts";
-import {FollowItem} from './FollowItem/FollowItem'
-import {Title} from "../UI/Title/Title";
-import {Preloader} from "../UI/Preloader/Preloader";
+import { useThemeContext } from '../../../context/ThemeContext'
+import { useContactsContext } from '../../../context/ContactsContext'
+import { FollowItem } from './FollowItem/FollowItem'
+import { Title } from '../UI/Title/Title'
+import { Preloader } from '../UI/Preloader/Preloader'
 import s from './Follow.module.sass'
 
-// types: 'row' | 'square'
-export const Follow = ({type = 'square'}) => {
-    const {theme} = useThemeContext()
-    const [socials, setContacts] = useState([])
-    const [isLoading, setIsLoading] = useState(false)
-    const [isError, setIsError] = useState(false)
+export const Follow = ({ type = 'square' }) => {
+  const { theme } = useThemeContext()
+  const { contacts, isLoading, isError } = useContactsContext()
 
-    useEffect(() => {
-        const fetchData = async () => {
-            setIsError(false)
-            setIsLoading(true)
+  const memoizedItems = useMemo(() => {
+    return contacts.map((social, index) => (
+      <FollowItem type={type} {...social} key={social.id || index} theme={theme} />
+    ))
+  }, [contacts, theme, type])
 
-            try {
-                const data = await contactsAPI.getContacts()
-                setContacts(data)
-            } catch (e) {
-                setIsError(true)
-            }
-            setIsLoading(false)
-        }
+  if (isError) return <div>Error loading socials</div>
 
-        fetchData()
-    }, [])
-
-    return (
-        <div>
-            <Title title="Follow me" theme={theme === 'light' ? 'dark' : 'light'} className={s.title}/>
-
-            {isError && <div>Something went wrong ...</div>}
-
-            {isLoading ? (
-                <Preloader/>
-            ) : (
-                <div className={cn(s.items, s[`grid_${type}`])}>
-                    {socials.map((social, index) => {
-                        return <FollowItem type={type} {...social} key={index} theme={theme}/>
-                    })}
-                </div>
-            )}
-        </div>
-    )
+  return (
+    <div>
+      <Title title="Follow me" theme={theme === 'light' ? 'dark' : 'light'} className={s.title} />
+      {isLoading ? <Preloader /> : <div className={cn(s.items, s[`grid_${type}`])}>{memoizedItems}</div>}
+    </div>
+  )
 }

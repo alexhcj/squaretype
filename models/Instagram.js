@@ -6,10 +6,6 @@ const Instagram = new Schema(
       type: String,
       required: true
     },
-    date: {
-      type: Date,
-      required: true
-    },
     comments: {
       type: Number,
       default: 0
@@ -17,6 +13,14 @@ const Instagram = new Schema(
     likes: {
       type: Number,
       default: 0
+    },
+    createdAt: {
+      type: Date,
+      required: true
+    },
+    updatedAt: {
+      type: Date,
+      required: true
     }
   },
   {
@@ -24,9 +28,9 @@ const Instagram = new Schema(
     toJSON: {
       virtuals: true,
       transform: function (doc, ret) {
-        ret.id = ret._id
         delete ret._id
         delete ret.__v
+        return ret
       }
     }
   }

@@ -1,15 +1,25 @@
 import InstagramService from '../services/instagram.service.js'
+import asyncHandler from "../utils/async-handler.js";
+
+import {
+  validateGetRecentPosts,
+  validateGetColophonPosts
+} from "../middlewares/validators/instagram.validators.js";
 
 export default {
-  getPosts: async (req, res) => {
+  getRecentPosts: asyncHandler( async (req, res) => {
     const query = req.query
 
-    try {
-      const result = await InstagramService.getPosts(query)
-      res.status(200).send(result)
-    } catch (e) {
-      console.error(e)
-      res.status(500).json({ message: 'Something went wrong, try again please' })
-    }
-  }
+    const result = await InstagramService.getRecentPosts(query)
+    res.status(200).send(result)
+  }),
+  getColophonPosts: asyncHandler( async (req, res) => {
+    const result = await InstagramService.getColophonPosts()
+    res.status(200).send(result)
+  })
+}
+
+export const validators = {
+  validateGetRecentPosts,
+  validateGetColophonPosts,
 }

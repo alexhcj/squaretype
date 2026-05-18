@@ -8,10 +8,12 @@ import { ReactComponent as CommentIcon } from '../../../../assets/comment.svg'
 import s from './InstagramItem.module.sass'
 
 export const InstagramItem = ({ img, likes, comments }) => {
+  const imgPath = process.env.REACT_APP_BACK_STATIC_URL + `/instagram/posts/${img}`
+
   return (
     <div className={s.imgBox}>
       <NavLink to="/" className={s.link}>
-        <img src={getSizedImg(img)} alt="" className={s.img} />
+        <img src={getSizedImg(imgPath)} alt="" className={s.img} />
         <div className={s.meta}>
           <div className={s.count}>
             <LikeIcon alt="Total likes" className={s.iconImg} />

@@ -13,13 +13,13 @@ export const Instagram = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const query = new URLSearchParams({
+            const query = {
                 limit: 6,
                 sort: 'date'
-            }).toString()
+            }
 
-            const data = await instagramAPI.getPosts(query)
-            setPosts(data)
+            const data = await instagramAPI.getRecentPosts(query)
+            setPosts(data.posts)
         }
         fetchData()
     }, [])

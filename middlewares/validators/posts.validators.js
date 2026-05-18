@@ -1,21 +1,10 @@
-import { param, query, validationResult } from 'express-validator'
-import AppError from "../../utils/app-error.js";
+import { param, query } from 'express-validator'
+import {handleValidationErrors} from "../../utils/errors-validation-handler.js";
 
 // Allowed sort fields whitelist (prevents injection and invalid fields)
 const ALLOWED_SORT_FIELDS = ['date', 'title', 'slug', '_id', 'createdAt', 'updatedAt', 'reviews']
 const MAX_LIMIT = 100 // Prevent excessive database load
 const MAX_OFFSET = 10000 // Reasonable pagination limit
-
-// Helper to check validation results
-const handleValidationErrors = (req, res, next) => {
-	const errors = validationResult(req)
-
-	if (!errors.isEmpty()) {
-		const errorMessages = errors.array().map(err => `${err.path}: ${err.msg}`).join(', ')
-		throw new AppError(errorMessages, 400)
-	}
-	next()
-}
 
 export const validateGetPosts = [
 	query('limit')

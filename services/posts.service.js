@@ -8,25 +8,23 @@ export default {
 
     const find = {}
 
-    // Поиск по заголовку
+    // Search by title
     if (search) find.title = { $regex: `${search}`, $options: 'i' }
 
-    // Фильтрация по категории (через populate или агрегацию)
-    // Если в Post хранится ObjectId категории, сначала найдите ID категории
+    // Filtering by category (via populate or aggregation)
+    // If the Post stores the ObjectId of a category, first find the category ID
     if (category) {
-        // Предполагаем, что в модели Post поле называется category (ссылка на модель Category)
-        // Если нужно фильтровать по СТРОКОВОМУ названию категории, 
-        // сначала получаем саму категорию:
+        // Let's assume that in the Post model the field is called category (reference to the Category model)
+        // If you need to filter by the STRING name of a category, first we get the category itself
         const categoryDoc = await Category.findOne({ category: category });
         if (categoryDoc) {
             find.category = categoryDoc._id;
         } else {
-            // Если категория не найдена, возвращаем пустой результат
+            // If the category is not found, we return an empty result.
             return { posts: [], total: 0, queryTotal: 0 };
         }
     }
 
-    // Теперь countDocuments вернет правильное число
     const totalEntities = await Post.countDocuments(find)
 
     const posts = await Post.find(find)
@@ -41,8 +39,7 @@ export default {
       total: totalEntities,
       queryTotal: posts.length
     }
-},
-
+  },
 
   getPostBySlug: async (slug) => {
     // Edge case: slug not found

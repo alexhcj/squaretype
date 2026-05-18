@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom'
 import cn from 'classnames'
 
 import { useThemeContext } from '../../../../context/ThemeContext'
-import { useLocalStorage } from "../../../../hooks/useLocalStorage.hook";
+import { useContactsContext } from '../../../../context/ContactsContext'
 import { divideNumber } from "../../../../shared/utils/number";
 import { ReactComponent as FacebookSVG } from '../../../../assets/svg/socials/facebook.svg';
 import { ReactComponent as TwitterSVG } from '../../../../assets/svg/socials/twitter.svg';
@@ -37,7 +37,7 @@ const footerLinks = [
 
 export const Footer = () => {
     const { theme } = useThemeContext()
-    const [contacts] = useLocalStorage('contacts', [])
+    const { contacts } = useContactsContext()
 
   return <footer className={cn(s.footer, s[`theme_${theme}`])}>
     <div className={s.container}>

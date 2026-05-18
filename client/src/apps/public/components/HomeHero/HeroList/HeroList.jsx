@@ -18,18 +18,16 @@ export const HeroList = () => {
         setIsError(false)
         setIsLoading(true)
 
-        const query = new URLSearchParams({
+        const query = {
           limit: 5,
           sort: 'date'
-        }).toString()
+        }
 
         try {
-          const response = await postsAPI.getPosts(query)
-          const fetchedPosts = response.posts || []
-          setPosts(fetchedPosts.slice(0, 5))
+          const {posts} = await postsAPI.getPosts(query)
+          setPosts(posts)
         } catch (e) {
           setIsError(true)
-          console.error('Ошибка загрузки постов:', e)
         } finally {
           setIsLoading(false)
         }

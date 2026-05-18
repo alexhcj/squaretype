@@ -9,11 +9,7 @@
     gap: 16px
     padding: 16px
     text-decoration: none
-    border-bottom: 1px solid $asphalt-color-10
     transition: $transition-default
-
-    &:hover
-      background-color: $asphalt-color-10
 
     .img
       width: 60px
@@ -57,11 +53,13 @@
   &.theme
     &_dark
       .item
-      border-bottom-color: $asphalt-color-10
+        border-bottom: 1px solid $asphalt-color-10
 
+        &:hover
+          background-color: $asphalt-color-10
 
       .type
-        color: $gray-color
+        color: $asphalt-color-11
 
       .info
         .title
@@ -73,5 +71,7 @@
 
     &_light
       .item
-      &:hover
-        background-color: $asphalt-color-2
+        border-bottom: 1px solid $asphalt-color-2
+
+        &:hover
+          background-color: $asphalt-color-2

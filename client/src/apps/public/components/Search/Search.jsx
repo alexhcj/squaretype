@@ -19,7 +19,7 @@ export const Search = ({ isOpen, setIsSearchOpen }) => {
   const debouncedSearch = useDebounce(search, 350)
   const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false)
-  const [posts, setPosts] = useState([])
+  const [posts, setPosts] = useState({})
   const [isResultOpen, setIsResultOpen] = useState(false)
   const ref = useRef(null)
 
@@ -34,14 +34,14 @@ export const Search = ({ isOpen, setIsSearchOpen }) => {
       setIsLoading(true)
       setIsResultOpen(true)
 
-      const query = new URLSearchParams({
+      const query = {
         search: debouncedSearch,
-        limit: 4
-      }).toString()
+        limit: 5
+      };
 
       try {
-        const { posts } = await postsAPI.getPosts(query)
-        setPosts(posts)
+        const response = await postsAPI.getPosts(query)
+        setPosts(response)
       } catch (e) {
         setIsError(true)
       }
@@ -127,12 +127,12 @@ export const Search = ({ isOpen, setIsSearchOpen }) => {
 
               <div className={cn(s.result, { [s.open]: isResultOpen }, theme === 'light' ? s.light : s.dark)}>
                 {isLoading && <Preloader />}
-                {posts &&
-                  posts.slice(0, 5).map((post) => <SearchItem key={post.title} {...post} onClick={handlePostClick} />)}
-                {posts && posts.length > 5 && (
-                  <div className={s.more_results}>And {posts.length - 5} more results...</div>
+                {Object.keys(posts).length &&
+                  posts.posts.map((post) => <SearchItem key={post.title} {...post} onClick={handlePostClick} />)}
+                {posts && posts.queryTotal > 5 && (
+                  <div className={s.more_results}>And {posts.queryTotal - 5} more results...</div>
                 )}
-                {posts.length === 0 && search !== '' && !isLoading && (
+                {posts.total === 0 && search !== '' && !isLoading && (
                   <div className={s.no_results}>No results found</div>
                 )}
               </div>
